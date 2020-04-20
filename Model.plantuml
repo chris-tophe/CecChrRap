@@ -1,3 +1,124 @@
+@startuml Model2
+skinparam classAttributeIconSize 0
+
+User o-- Building
+City o-- Building
+Building *-- Category
+Building o-- Spec
+Spec *-- Type
+
+class User{
+    - int idUser
+    - String email
+    - String passWord
+    - int role
+    - List<Building> Buildings
+
+    + String getIdUser()
+    + void setIdUser(int id)
+    + String getEmail()
+    + void setEmail(String email)
+    + String getPassWord()
+    + void setPassWord(String email)
+    + String getRole()
+    + void setRole(int id)
+    + List<Building> getBuildings()
+    + void addBuilding(Building building);
+    + void removeBuilding(Building building);
+}
+
+class City{
+    - int idCity
+    - String name
+    - List<Building> Buildings
+
+    + String getIdCity()
+    + void setIdCity(int id)
+    + String getName()
+    + void setName(String name)
+    + List<Building> getBuildings()
+    + void addBuilding(Building building);
+    + void removeBuilding(Building building);
+}
+
+class Building{
+    - int idBuilding
+    - String name
+    - String streetNumber
+    - String streetName
+    - int zipCode
+    - String city
+    - Point coordinate
+    - List<String> photos
+    - String description
+    - Category category
+    - int constructionYear
+    - String architect
+    - List<Spec> Specs
+
+    + int getIdBuilding()
+    + void setIdBuilding(int idBuilding)
+    + String getName()
+    + void setName(String name)
+    + String getStreetNumber()
+    + void setStreetNumber(String streetNumber)
+    + String getStreetName()
+    + void setStreetName(String streetName)
+    + String getZipCode()
+    + void setZipCode(int zipCode)
+    + String getCity()
+    + void setCity(String city)
+    + Point getCoordinate()
+    + void setCoordinate(Point coordinate)
+    + List<String> getPhotos()
+    + void addPhoto(String photo);
+    + void removePhoto(String photo);
+    + String getDescription()
+    + void setDescription(String description)
+    + String getCategory()
+    + void setCategory(Category category)
+    + int getConstructionYear()
+    + void setConstructionYear(int constructionYear)
+    + String getArchitect()
+    + void setArchitect(String architect)
+    + List<Spec> getSpecs()
+    + void addSpecs(Spec spec);
+    + void removeSpecs(Spec spec);
+}
+
+enum Category{
+    null
+    Castle
+    House
+    Building
+    Ruin
+}
+
+class Spec{
+    -int idSpec
+    -Type name
+    -String description
+    -List<String> photos
+
+    + int getidSpec()
+    + void setidSpec(int id)
+    + String getName()
+    + void setName(String name)
+    + String getDescription()
+    + void setDescription(String description)
+
+}
+
+enum Type{
+    Fundation
+    Windows
+    Roof
+    Wall
+}
+
+@enduml
+
+
 @startuml Model1
 skinparam classAttributeIconSize 0
 
@@ -145,3 +266,4 @@ OpenStreetMap -> ApiMap
 ApiMap -> User : renvoi une image ?
 
 @enduml
+
