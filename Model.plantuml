@@ -46,7 +46,7 @@ class Building{
     - String name
     - String streetNumber
     - String streetName
-    - int zipCode
+    - String zipCode
     - String city
     - Point coordinate
     - List<String> photos
@@ -65,7 +65,7 @@ class Building{
     + String getStreetName()
     + void setStreetName(String streetName)
     + String getZipCode()
-    + void setZipCode(int zipCode)
+    + void setZipCode(String zipCode)
     + String getCity()
     + void setCity(String city)
     + Point getCoordinate()

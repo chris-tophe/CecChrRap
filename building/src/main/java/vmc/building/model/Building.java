@@ -23,7 +23,7 @@ public class Building {
 	
 	private String streetName;
 	
-	private int zipCode;
+	private String zipCode;
 	
 	private String city;
 	
@@ -49,7 +49,7 @@ public class Building {
 	}
 
   
-	public Building(int idBuilding, String name, String streetNumber, String streetName, int zipCode, String city,
+	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode, String city,
 			Point coordinate, List<String> photos, String description, Category category, int constructionYear,
 			String architecte, List<Spec> specs) {
 		super();
@@ -109,12 +109,12 @@ public class Building {
 	}
 
 
-	public int getZipCode() {
+	public String getZipCode() {
 		return zipCode;
 	}
 
 
-	public void setZipCode(int zipCode) {
+	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
 
