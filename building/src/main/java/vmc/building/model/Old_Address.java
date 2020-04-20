@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Address {
+public class Old_Address {
 
 	@Id
 	@GeneratedValue
@@ -14,12 +14,12 @@ public class Address {
 	private String streetName;
 	
 
-	public Address() {
+	public Old_Address() {
 		
 	}
 
 
-	public Address(int idAddress, String streetName) {
+	public Old_Address(int idAddress, String streetName) {
 		super();
 		this.idAddress = idAddress;
 		this.streetName = streetName;

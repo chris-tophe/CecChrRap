@@ -1,12 +1,12 @@
 package vmc.building.model;
 
+import java.awt.Point;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Building {
@@ -17,8 +17,15 @@ public class Building {
 	
 	private String name;
 	
-	@OneToOne
-	private Address address;
+	private String streetNumber;
+	
+	private String streetName;
+	
+	private int zipCode;
+	
+	private String city;
+	
+	private Point coordinate;
 	
 	@ElementCollection
 	private List<String> photos;
@@ -40,12 +47,17 @@ public class Building {
 	}
 
 
-	public Building(int idBuilding, String name, Address address, List<String> photos, String description,
-			Category category, int constructionYear, String architecte, List<Spec> specs) {
+	public Building(int idBuilding, String name, String streetNumber, String streetName, int zipCode, String city,
+			Point coordinate, List<String> photos, String description, Category category, int constructionYear,
+			String architecte, List<Spec> specs) {
 		super();
 		this.idBuilding = idBuilding;
 		this.name = name;
-		this.address = address;
+		this.streetNumber = streetNumber;
+		this.streetName = streetName;
+		this.zipCode = zipCode;
+		this.city = city;
+		this.coordinate = coordinate;
 		this.photos = photos;
 		this.description = description;
 		this.category = category;
@@ -75,13 +87,53 @@ public class Building {
 	}
 
 
-	public Address getAddress() {
-		return address;
+	public String getStreetNumber() {
+		return streetNumber;
 	}
 
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+
+	public int getZipCode() {
+		return zipCode;
+	}
+
+
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+	public Point getCoordinate() {
+		return coordinate;
+	}
+
+
+	public void setCoordinate(Point coordinate) {
+		this.coordinate = coordinate;
 	}
 
 
@@ -147,10 +199,11 @@ public class Building {
 
 	@Override
 	public String toString() {
-		return "Building [idBuilding=" + idBuilding + ", name=" + name + ", address=" + address + ", photos=" + photos
-				+ ", description=" + description + ", category=" + category + ", constructionYear=" + constructionYear
-				+ ", architecte=" + architecte + ", specs=" + specs + "]";
+		return "Building [idBuilding=" + idBuilding + ", name=" + name + ", streetNumber=" + streetNumber
+				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", city=" + city + ", coordinate="
+				+ coordinate + ", photos=" + photos + ", description=" + description + ", category=" + category
+				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + ", specs=" + specs + "]";
 	}
-	
+
 	
 }
