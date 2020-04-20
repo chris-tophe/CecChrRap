@@ -10,3 +10,12 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 /.metadata/
+/city/.mvn/wrapper/MavenWrapperDownloader.java
+/city/.mvn/wrapper/maven-wrapper.jar
+/city/.mvn/wrapper/maven-wrapper.properties
+/city/mvnw
+/city/mvnw.cmd
+/city/.mvn/wrapper/maven-wrapper.jar
+/city/pom.xml
+/city/.mvn/wrapper/maven-wrapper.jar
+/city/.mvn/*
