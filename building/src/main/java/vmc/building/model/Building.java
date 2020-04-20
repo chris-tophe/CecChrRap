@@ -1,5 +1,6 @@
 package vmc.building.model;
 
+
 import java.awt.Point;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
 
 @Entity
 public class Building {
@@ -26,7 +28,7 @@ public class Building {
 	private String city;
 	
 	private Point coordinate;
-	
+
 	@ElementCollection
 	private List<String> photos;
 	
@@ -46,7 +48,7 @@ public class Building {
 		
 	}
 
-
+  
 	public Building(int idBuilding, String name, String streetNumber, String streetName, int zipCode, String city,
 			Point coordinate, List<String> photos, String description, Category category, int constructionYear,
 			String architecte, List<Spec> specs) {
@@ -134,6 +136,7 @@ public class Building {
 
 	public void setCoordinate(Point coordinate) {
 		this.coordinate = coordinate;
+
 	}
 
 
@@ -204,6 +207,5 @@ public class Building {
 				+ coordinate + ", photos=" + photos + ", description=" + description + ", category=" + category
 				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + ", specs=" + specs + "]";
 	}
-
 	
 }
