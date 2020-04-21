@@ -8,6 +8,5 @@ import vmc.building.model.Building;
 @Repository
 public interface BuildingDAO extends JpaRepository<Building, Integer> {
 
-	public Building findById(int id);
 	
 }
