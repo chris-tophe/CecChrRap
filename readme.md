@@ -9,7 +9,7 @@ Utilisation :
 
 Auteurs:
 
-Cecile GALLIOZ
+Cécile GALLIOZ
 https://github.com/CecileGallioz
 
 Christophe LOYER
