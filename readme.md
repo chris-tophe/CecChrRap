@@ -1,6 +1,6 @@
 Visit My Cities
 
-Logiciel de planification de visite touristique de ville.
+Logiciel de planification de visite touristique de villes.
 
 Lancement :
 
