@@ -1,3 +1,117 @@
+@startuml Model3
+skinparam classAttributeIconSize 0
+
+User o-- BuildingUser
+City o-- BuildingCity
+Building *-- Category
+Ui <..> User
+Ui <..> City
+Ui <..> Building
+
+class User{
+    - int idUser
+    - String email
+    - String passWord
+    - int role
+    - List<BuildingUSer> Buildings
+
+    + String getIdUser()
+    + void setIdUser(int id)
+    + String getEmail()
+    + void setEmail(String email)
+    + String getPassWord()
+    + void setPassWord(String email)
+    + String getRole()
+    + void setRole(int id)
+    + List<Building> getBuildings()
+    + void addBuilding(Building building);
+    + void removeBuilding(Building building);
+}
+
+class BuildingUser{
+    - int idBuildingUser
+    - String name
+    - String photoUrl
+}
+
+class City{
+    - int idCity
+    - String name
+    - List<BuildingCity> Buildings
+
+    + String getIdCity()
+    + void setIdCity(int id)
+    + String getName()
+    + void setName(String name)
+    + List<BuildingLight> getBuildings()
+    + void addBuildingLight(Building building);
+    + void removeBuildingLight(Building building);
+}
+
+class BuildingCity{
+    - int idBuildingCity
+    - String name
+    - String photoUrl
+
+}
+
+class Building{
+    - int idBuilding
+    - String name
+    - String streetNumber
+    - String streetName
+    - String zipCode
+    - String city
+    - Point coordinate
+    - List<String> photos
+    - String description
+    - Category category
+    - int constructionYear
+    - String architect
+    - List<Spec> Specs
+
+    + int getIdBuilding()
+    + void setIdBuilding(int idBuilding)
+    + String getName()
+    + void setName(String name)
+    + String getStreetNumber()
+    + void setStreetNumber(String streetNumber)
+    + String getStreetName()
+    + void setStreetName(String streetName)
+    + String getZipCode()
+    + void setZipCode(String zipCode)
+    + String getCity()
+    + void setCity(String city)
+    + Point getCoordinate()
+    + void setCoordinate(Point coordinate)
+    + List<String> getPhotos()
+    + void addPhoto(String photo);
+    + void removePhoto(String photo);
+    + String getDescription()
+    + void setDescription(String description)
+    + String getCategory()
+    + void setCategory(Category category)
+    + int getConstructionYear()
+    + void setConstructionYear(int constructionYear)
+    + String getArchitect()
+    + void setArchitect(String architect)
+    + List<Spec> getSpecs()
+    + void addSpecs(Spec spec);
+    + void removeSpecs(Spec spec);
+}
+
+enum Category{
+    null
+    Castle
+    House
+    Building
+    Ruin
+}
+
+@enduml
+
+
+
 @startuml Model2
 skinparam classAttributeIconSize 0
 
