@@ -54,6 +54,9 @@
       <children>
             <Button fx:id="button" layoutX="140.0" layoutY="115.0" mnemonicParsing="false" text="Button" />
             <Label fx:id="label" layoutX="230.0" layoutY="120.0" text="Label" />
+            <Label fx:id="userMail" layoutX="100" layoutY="200.0" text="Label" />
+            <Label fx:id="userPassword" layoutX="300" layoutY="200.0" text="Label" />
+            <Label fx:id="userRole" layoutX="500" layoutY="200.0" text="Label" />
       </children>
     </AnchorPane>
   </children>

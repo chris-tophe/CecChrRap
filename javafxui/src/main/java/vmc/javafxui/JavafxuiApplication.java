@@ -1,6 +1,8 @@
 package vmc.javafxui;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -11,6 +13,8 @@ import javafx.application.HostServices;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+@SpringBootApplication
+@EnableFeignClients("vmc.javafxui")
 public class JavafxuiApplication extends Application {
 
 	private ConfigurableApplicationContext context;
