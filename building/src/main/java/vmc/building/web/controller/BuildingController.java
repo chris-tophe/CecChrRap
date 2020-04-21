@@ -2,6 +2,7 @@ package vmc.building.web.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,14 +34,13 @@ public class BuildingController {
 	}
 	
 	@GetMapping (value = "/building/{id}")
-	public Building oneBuilding (@PathVariable int id) {
+	public Optional<Building> oneBuilding (@PathVariable int id) {
 		
-		Building building = BuildingDAO.findById(id);
+		Optional<Building> building = BuildingDAO.findById(id);
 		
 		if (building == null)
 			throw new BuildingNotFoundException("La ville avec l'id " + id + " est introuvable.");
 			return building;
-		
 	}
 	
 	@PostMapping (value = "building")
@@ -62,9 +62,14 @@ public class BuildingController {
 	}
 	
 	@PutMapping (value = "/building")
-	public void updateBuilding (@RequestBody Building building) {
+	public Building updateBuilding (@RequestBody Building building) {
 		
-		BuildingDAO.save(building);
+		Optional<Building> selectedBuilding = BuildingDAO.findById(building.getIdBuilding());
+		
+		if(selectedBuilding.isPresent())
+			return BuildingDAO.save(building);
+		return null;
+		
 		
 	}
 	
