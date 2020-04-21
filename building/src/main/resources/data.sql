@@ -1,3 +1,2 @@
-INSERT INTO spec VALUES (1,'Roof');
 INSERT INTO building VALUES (1,'Erwin von Steinbach',4,'Strasbourg',1439,null,'La cathédrale Notre-Dame de Strasbourg est une cathédrale gothique catholique. Entre 1647 et 1874, pendant plus de deux siècle, elle fut le plus haut édifice du monde.','Cathédrale','Place de la Cathédrale','','67000');
 INSERT INTO building_photos VALUES (1,'https://en.wikipedia.org/wiki/File:Strasbourg_Cathedral_Exterior_-_Diliff.jpg');
