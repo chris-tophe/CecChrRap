@@ -22,13 +22,13 @@ public class User {
 	private int role;
 	
 	@ElementCollection
-	private List<Building> buildings;
+	private List<BuildingUser> buildings;
 	
 	public User() {
 		
 	}
 
-	public User(int idUser, String email, String password, int role, List<Building> buildings) {
+	public User(int idUser, String email, String password, int role, List<BuildingUser> buildings) {
 		super();
 		this.idUser = idUser;
 		this.email = email;
@@ -69,18 +69,18 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Building> getBuildings() {
+	public List<BuildingUser> getBuildings() {
 		return buildings;
 	}
 
-	public User addBuilding(Building building) {
+	public User addBuilding(BuildingUser building) {
 		if (!this.buildings.contains(building)) {
 			this.buildings.add(building);
 		}
 		return this;
 	}
 	
-	public User removeBuilding(Building building) {
+	public User removeBuilding(BuildingUser building) {
 		if (this.buildings.contains(building)) {
 			this.buildings.remove(building);
 		}
