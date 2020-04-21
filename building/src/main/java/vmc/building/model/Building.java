@@ -25,7 +25,7 @@ public class Building {
 	
 	private String zipCode;
 	
-	private String city;
+	private String cityAddress;
 	
 	private Point coordinate;
 
@@ -40,8 +40,6 @@ public class Building {
 	
 	private String architecte;
 	
-	@ElementCollection
-	private List<Spec> specs;
 
 	
 	public Building() {
@@ -49,23 +47,22 @@ public class Building {
 	}
 
   
-	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode, String city,
+	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode, String cityAddress,
 			Point coordinate, List<String> photos, String description, Category category, int constructionYear,
-			String architecte, List<Spec> specs) {
+			String architecte) {
 		super();
 		this.idBuilding = idBuilding;
 		this.name = name;
 		this.streetNumber = streetNumber;
 		this.streetName = streetName;
 		this.zipCode = zipCode;
-		this.city = city;
+		this.cityAddress = cityAddress;
 		this.coordinate = coordinate;
 		this.photos = photos;
 		this.description = description;
 		this.category = category;
 		this.constructionYear = constructionYear;
 		this.architecte = architecte;
-		this.specs = specs;
 	}
 
 
@@ -119,13 +116,13 @@ public class Building {
 	}
 
 
-	public String getCity() {
-		return city;
+	public String getCityAddress() {
+		return cityAddress;
 	}
 
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCityAddress(String cityAddress) {
+		this.cityAddress = cityAddress;
 	}
 
 
@@ -190,22 +187,13 @@ public class Building {
 	}
 
 
-	public List<Spec> getSpecs() {
-		return specs;
-	}
-
-
-	public void setSpecs(List<Spec> specs) {
-		this.specs = specs;
-	}
-
 
 	@Override
 	public String toString() {
 		return "Building [idBuilding=" + idBuilding + ", name=" + name + ", streetNumber=" + streetNumber
-				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", city=" + city + ", coordinate="
+				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", cityAddress=" + cityAddress + ", coordinate="
 				+ coordinate + ", photos=" + photos + ", description=" + description + ", category=" + category
-				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + ", specs=" + specs + "]";
+				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + "]";
 	}
 	
 }
