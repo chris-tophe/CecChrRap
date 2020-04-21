@@ -5,7 +5,7 @@ User o-- Building
 City o-- Building
 Building *-- Category
 Building o-- Spec
-Spec *-- Type
+Spec <.> Type
 
 class User{
     - int idUser

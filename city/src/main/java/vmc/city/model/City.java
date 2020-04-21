@@ -1,10 +1,12 @@
 package vmc.city.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -12,20 +14,19 @@ import javax.persistence.Id;
 public class City {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idCity;
 	
 	private String name;
 	
 	@ElementCollection
-	private List<Building> buildings;
+	private List<BuildingCity> buildings;
 	
 	public City(){
-		
+		this.buildings = new LinkedList<BuildingCity>();
 	}
 	
-	public City(int idCity, String name , List<Building> buildings) {
-		super();
+	public City(int idCity, String name , List<BuildingCity> buildings) {
 		this.idCity = idCity;
 		this.name = name;
 		this.buildings = buildings;
@@ -44,18 +45,18 @@ public class City {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Building> getBuildings() {
+	public List<BuildingCity> getBuildings() {
 		return buildings;
 	}
-	public void setBuildings(List<Building> buildings) {
+	public void setBuildings(List<BuildingCity> buildings) {
 		this.buildings = buildings;
 	}
 	
-	public void addBuilding (Building building) {
+	public void addBuilding (BuildingCity building) {
 		this.buildings.add(building);
 	}
 	
-	public void removeBuilding (Building building) {
+	public void removeBuilding (BuildingCity building) {
 		this.buildings.remove(building);
 	}
 	
