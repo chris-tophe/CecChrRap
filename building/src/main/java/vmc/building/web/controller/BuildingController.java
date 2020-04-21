@@ -41,7 +41,6 @@ public class BuildingController {
 			throw new BuildingNotFoundException("La ville avec l'id " + id + " est introuvable.");
 			return building;
 		
-		
 	}
 	
 	@PostMapping (value = "building")
