@@ -61,7 +61,7 @@ public class BuildingController {
 		
 	}
 	
-	@PutMapping (value = "/building/{id}")
+	@PutMapping (value = "/building")
 	public void updateBuilding (@RequestBody Building building) {
 		
 		BuildingDAO.save(building);
