@@ -1,6 +1,6 @@
 Visit My Cities
 
-Logiciel de planification de visite touristique de ville.
+Logiciel de planification de visite touristique de villes.
 
 Lancement :
 
@@ -9,7 +9,7 @@ Utilisation :
 
 Auteurs:
 
-Cecile GALLIOZ
+Cécile GALLIOZ
 https://github.com/CecileGallioz
 
 Christophe LOYER
