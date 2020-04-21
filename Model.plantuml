@@ -84,8 +84,7 @@ class Building{
     + Point getCoordinate()
     + void setCoordinate(Point coordinate)
     + List<String> getPhotos()
-    + void addPhoto(String photo);
-    + void removePhoto(String photo);
+    + void setPhotos(List<String> photos)
     + String getDescription()
     + void setDescription(String description)
     + String getCategory()
