@@ -1,4 +1,4 @@
-package vmc.javafxui.UiControler;
+package vmc.javafxui.UiController;
 
 import org.springframework.stereotype.Component;
 
