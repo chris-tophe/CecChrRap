@@ -41,7 +41,6 @@ public class BuildingController {
 			throw new BuildingNotFoundException("La ville avec l'id " + id + " est introuvable.");
 			return building;
 		
-		
 	}
 	
 	@PostMapping (value = "building")
@@ -62,7 +61,7 @@ public class BuildingController {
 		
 	}
 	
-	@PutMapping (value = "/building/{id}")
+	@PutMapping (value = "/building")
 	public void updateBuilding (@RequestBody Building building) {
 		
 		BuildingDAO.save(building);
