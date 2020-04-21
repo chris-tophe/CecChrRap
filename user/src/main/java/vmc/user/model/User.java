@@ -1,5 +1,6 @@
 package vmc.user.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -25,11 +26,10 @@ public class User {
 	private List<BuildingUser> buildings;
 	
 	public User() {
-		
+		this.buildings = new LinkedList<BuildingUser>();
 	}
 
 	public User(int idUser, String email, String password, int role, List<BuildingUser> buildings) {
-		super();
 		this.idUser = idUser;
 		this.email = email;
 		this.password = password;
