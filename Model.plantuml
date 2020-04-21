@@ -68,7 +68,6 @@ class Building{
     - Category category
     - int constructionYear
     - String architect
-    - List<Spec> Specs
 
     + int getIdBuilding()
     + void setIdBuilding(int idBuilding)
@@ -95,9 +94,7 @@ class Building{
     + void setConstructionYear(int constructionYear)
     + String getArchitect()
     + void setArchitect(String architect)
-    + List<Spec> getSpecs()
-    + void addSpecs(Spec spec);
-    + void removeSpecs(Spec spec);
+
 }
 
 enum Category{
