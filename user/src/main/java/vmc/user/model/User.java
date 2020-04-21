@@ -5,13 +5,14 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idUser;
 	
 	private String email;
@@ -40,8 +41,8 @@ public class User {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdUser(int id) {
+		this.idUser = id;
 	}
 
 	public String getEmail() {
@@ -72,8 +73,18 @@ public class User {
 		return buildings;
 	}
 
-	public void setBuildings(List<Building> buildings) {
-		this.buildings = buildings;
+	public User addBuilding(Building building) {
+		if (!this.buildings.contains(building)) {
+			this.buildings.add(building);
+		}
+		return this;
+	}
+	
+	public User removeBuilding(Building building) {
+		if (this.buildings.contains(building)) {
+			this.buildings.remove(building);
+		}
+		return this;
 	}
 	
 }
