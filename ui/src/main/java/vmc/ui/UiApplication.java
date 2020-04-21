@@ -1,13 +1,15 @@
 package vmc.ui;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import fx.Main;
+import javafx.application.Application;
 
 @SpringBootApplication
 public class UiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UiApplication.class, args);
+		Application.launch(Main.class, args);
 	}
 
 }
