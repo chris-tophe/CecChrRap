@@ -23,7 +23,7 @@ public interface BuildingProxy {
 	public List<BuildingBean> listBuildings();
 	
 	@GetMapping (value = "/building/{id}")
-	public Optional<BuildingBean> oneBuilding (@PathVariable int id);
+	public BuildingBean oneBuilding (@PathVariable int id);
 	
 	@PostMapping (value = "building")
 	public ResponseEntity<Void> addBuilding (@RequestBody BuildingBean building);
