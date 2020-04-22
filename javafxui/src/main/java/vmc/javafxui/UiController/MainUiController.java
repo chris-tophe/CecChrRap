@@ -1,4 +1,4 @@
-package vmc.javafxui.UiControler;
+package vmc.javafxui.UiController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import vmc.javafxui.beans.BuildingUserBean;
 import vmc.javafxui.beans.UserBean;
+import vmc.javafxui.beans.CityBean;
+import vmc.javafxui.proxies.CityProxy;
 import vmc.javafxui.proxies.UserProxy;
 
 @Component
@@ -22,6 +24,9 @@ public class MainUiController {
 	@Autowired
 	private UserProxy userProxy;
 	
+	@Autowired
+	private CityProxy cityProxy;
+	
 	@FXML
 	public Label label;
 	public Button button;
@@ -32,6 +37,7 @@ public class MainUiController {
 	
 	@FXML
 	public void initialize() {
+		
 		this.button.setOnAction(event -> this.label.setText(this.hostServices.getDocumentBase()));
 	}
 }
