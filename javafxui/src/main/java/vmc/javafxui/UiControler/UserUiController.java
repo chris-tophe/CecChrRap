@@ -8,14 +8,11 @@ import javafx.application.HostServices;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import vmc.javafxui.beans.BuildingUserBean;
-import vmc.javafxui.beans.UserBean;
 import vmc.javafxui.proxies.UserProxy;
 
 @Component
 @Controller
-public class MainUiController {
+public class UserUiController {
 	
 	private final HostServices hostServices;
 	
@@ -26,7 +23,7 @@ public class MainUiController {
 	public Label label;
 	public Button button;
 	
-	public MainUiController(HostServices hostServices) {
+	public UserUiController(HostServices hostServices) {
 		this.hostServices = hostServices;
 	}
 	
