@@ -18,9 +18,9 @@ public class BuildingBean {
 	
 	private String cityAddress;
 	
-	double latitude;
+	String latitude;
 	
-	double longitude;
+	String longitude;
 
 	private List<String> photos;
 	
@@ -41,7 +41,7 @@ public class BuildingBean {
 
 	
 	public BuildingBean(int idBuilding, String name, String streetNumber, String streetName, String zipCode,
-			String cityAddress, double latitude, double longitude, List<String> photos, String description,
+			String cityAddress, String latitude, String longitude, List<String> photos, String description,
 			CategoryBean category, int constructionYear, String architecte) {
 		super();
 		this.idBuilding = idBuilding;
@@ -133,25 +133,25 @@ public class BuildingBean {
 
 
 
-	public double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
 
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
 
 
-	public double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
 
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
