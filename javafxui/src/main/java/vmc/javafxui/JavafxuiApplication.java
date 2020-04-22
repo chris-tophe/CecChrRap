@@ -50,6 +50,8 @@ public class JavafxuiApplication extends Application {
 }
 
 class StageReadyEvent extends ApplicationEvent {
+
+
 	public Stage getStage() {
 		return Stage.class.cast(getSource());
 	}
