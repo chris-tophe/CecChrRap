@@ -19,24 +19,24 @@ public class UserApplication {
 		SpringApplication.run(UserApplication.class, args);
 	}
 	
-	@Bean
-	CommandLineRunner createUsers(UserDAO userRepo, BuildingUserDAO buildingRepo) {
-		return args -> {
-			Faker faker = new Faker();
-			for (int i = 0; i < 3; i++) {
-				User user = new User();
-				user.setEmail(faker.internet().emailAddress());
-				user.setPassword(faker.internet().password());
-				user.setRole(2);
-				for (int j = 0; j < 5; j++) {
-					BuildingUser building = new BuildingUser();
-					building.setName(faker.elderScrolls().city());
-					building.setPhoto(faker.avatar().image().toString());
-					user.addBuilding(building);
-					buildingRepo.save(building);
-				}
-				userRepo.save(user);
-			}
-		};
-	}
+//	@Bean
+//	CommandLineRunner createUsers(UserDAO userRepo, BuildingUserDAO buildingRepo) {
+//		return args -> {
+//			Faker faker = new Faker();
+//			for (int i = 0; i < 3; i++) {
+//				User user = new User();
+//				user.setEmail(faker.internet().emailAddress());
+//				user.setPassword(faker.internet().password());
+//				user.setRole(2);
+//				for (int j = 0; j < 5; j++) {
+//					BuildingUser building = new BuildingUser();
+//					building.setName(faker.elderScrolls().city());
+//					building.setPhoto(faker.avatar().image().toString());
+//					user.addBuilding(building);
+//					buildingRepo.save(building);
+//				}
+//				userRepo.save(user);
+//			}
+//		};
+//	}
 }
