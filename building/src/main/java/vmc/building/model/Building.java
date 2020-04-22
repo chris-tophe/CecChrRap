@@ -27,9 +27,9 @@ public class Building {
 	
 	private String cityAddress;
 	
-	double latitude;
+	String latitude;
 	
-	double longitude;
+	String longitude;
 
 	@ElementCollection
 	private List<String> photos;
@@ -51,7 +51,7 @@ public class Building {
 
 	
 	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode,
-			String cityAddress, double latitude, double longitude, List<String> photos, String description,
+			String cityAddress, String latitude, String longitude, List<String> photos, String description,
 			Category category, int constructionYear, String architecte) {
 		super();
 		this.idBuilding = idBuilding;
@@ -143,25 +143,25 @@ public class Building {
 
 
 
-	public double getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
 
 
-	public void setLatitude(double latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
 
 
-	public double getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
 
 
-	public void setLongitude(double longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
