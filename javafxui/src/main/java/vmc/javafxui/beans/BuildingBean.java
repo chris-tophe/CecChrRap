@@ -1,9 +1,7 @@
 package vmc.javafxui.beans;
 
 
-import java.awt.Point;
 import java.util.List;
-
 
 
 public class BuildingBean {
@@ -20,7 +18,9 @@ public class BuildingBean {
 	
 	private String cityAddress;
 	
-	private Point coordinate;
+	double latitude;
+	
+	double longitude;
 
 	private List<String> photos;
 	
@@ -38,10 +38,11 @@ public class BuildingBean {
 		
 	}
 
-  
-	public BuildingBean(int idBuilding, String name, String streetNumber, String streetName, String zipCode, String cityAddress,
-			Point coordinate, List<String> photos, String description, CategoryBean category, int constructionYear,
-			String architecte) {
+
+	
+	public BuildingBean(int idBuilding, String name, String streetNumber, String streetName, String zipCode,
+			String cityAddress, double latitude, double longitude, List<String> photos, String description,
+			CategoryBean category, int constructionYear, String architecte) {
 		super();
 		this.idBuilding = idBuilding;
 		this.name = name;
@@ -49,7 +50,8 @@ public class BuildingBean {
 		this.streetName = streetName;
 		this.zipCode = zipCode;
 		this.cityAddress = cityAddress;
-		this.coordinate = coordinate;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.photos = photos;
 		this.description = description;
 		this.category = category;
@@ -58,9 +60,11 @@ public class BuildingBean {
 	}
 
 
+
 	public int getIdBuilding() {
 		return idBuilding;
 	}
+
 
 
 	public void setIdBuilding(int idBuilding) {
@@ -68,9 +72,11 @@ public class BuildingBean {
 	}
 
 
+
 	public String getName() {
 		return name;
 	}
+
 
 
 	public void setName(String name) {
@@ -78,9 +84,11 @@ public class BuildingBean {
 	}
 
 
+
 	public String getStreetNumber() {
 		return streetNumber;
 	}
+
 
 
 	public void setStreetNumber(String streetNumber) {
@@ -88,9 +96,11 @@ public class BuildingBean {
 	}
 
 
+
 	public String getStreetName() {
 		return streetName;
 	}
+
 
 
 	public void setStreetName(String streetName) {
@@ -98,9 +108,11 @@ public class BuildingBean {
 	}
 
 
+
 	public String getZipCode() {
 		return zipCode;
 	}
+
 
 
 	public void setZipCode(String zipCode) {
@@ -108,9 +120,11 @@ public class BuildingBean {
 	}
 
 
+
 	public String getCityAddress() {
 		return cityAddress;
 	}
+
 
 
 	public void setCityAddress(String cityAddress) {
@@ -118,15 +132,29 @@ public class BuildingBean {
 	}
 
 
-	public Point getCoordinate() {
-		return coordinate;
+
+	public double getLatitude() {
+		return latitude;
 	}
 
 
-	public void setCoordinate(Point coordinate) {
-		this.coordinate = coordinate;
 
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
+
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 
 
 	public List<String> getPhotos() {
@@ -134,9 +162,11 @@ public class BuildingBean {
 	}
 
 
+
 	public void setPhotos(List<String> photos) {
 		this.photos = photos;
 	}
+
 
 
 	public String getDescription() {
@@ -144,9 +174,11 @@ public class BuildingBean {
 	}
 
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 
 	public CategoryBean getCategory() {
@@ -154,9 +186,11 @@ public class BuildingBean {
 	}
 
 
+
 	public void setCategory(CategoryBean category) {
 		this.category = category;
 	}
+
 
 
 	public int getConstructionYear() {
@@ -164,14 +198,17 @@ public class BuildingBean {
 	}
 
 
+
 	public void setConstructionYear(int constructionYear) {
 		this.constructionYear = constructionYear;
 	}
 
 
+
 	public String getArchitecte() {
 		return architecte;
 	}
+
 
 
 	public void setArchitecte(String architecte) {
@@ -183,9 +220,13 @@ public class BuildingBean {
 	@Override
 	public String toString() {
 		return "Building [idBuilding=" + idBuilding + ", name=" + name + ", streetNumber=" + streetNumber
-				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", cityAddress=" + cityAddress + ", coordinate="
-				+ coordinate + ", photos=" + photos + ", description=" + description + ", category=" + category
-				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + "]";
+				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", cityAddress=" + cityAddress + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", photos=" + photos + ", description=" + description
+				+ ", category=" + category + ", constructionYear=" + constructionYear + ", architecte=" + architecte
+				+ "]";
 	}
+
+  
+	
 	
 }

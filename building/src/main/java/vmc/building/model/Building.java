@@ -1,7 +1,6 @@
 package vmc.building.model;
 
 
-import java.awt.Point;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -28,7 +27,9 @@ public class Building {
 	
 	private String cityAddress;
 	
-	private Point coordinate;
+	double latitude;
+	
+	double longitude;
 
 	@ElementCollection
 	private List<String> photos;
@@ -47,10 +48,11 @@ public class Building {
 		
 	}
 
-  
-	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode, String cityAddress,
-			Point coordinate, List<String> photos, String description, Category category, int constructionYear,
-			String architecte) {
+
+	
+	public Building(int idBuilding, String name, String streetNumber, String streetName, String zipCode,
+			String cityAddress, double latitude, double longitude, List<String> photos, String description,
+			Category category, int constructionYear, String architecte) {
 		super();
 		this.idBuilding = idBuilding;
 		this.name = name;
@@ -58,7 +60,8 @@ public class Building {
 		this.streetName = streetName;
 		this.zipCode = zipCode;
 		this.cityAddress = cityAddress;
-		this.coordinate = coordinate;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.photos = photos;
 		this.description = description;
 		this.category = category;
@@ -67,9 +70,11 @@ public class Building {
 	}
 
 
+
 	public int getIdBuilding() {
 		return idBuilding;
 	}
+
 
 
 	public void setIdBuilding(int idBuilding) {
@@ -77,9 +82,11 @@ public class Building {
 	}
 
 
+
 	public String getName() {
 		return name;
 	}
+
 
 
 	public void setName(String name) {
@@ -87,9 +94,11 @@ public class Building {
 	}
 
 
+
 	public String getStreetNumber() {
 		return streetNumber;
 	}
+
 
 
 	public void setStreetNumber(String streetNumber) {
@@ -97,9 +106,11 @@ public class Building {
 	}
 
 
+
 	public String getStreetName() {
 		return streetName;
 	}
+
 
 
 	public void setStreetName(String streetName) {
@@ -107,9 +118,11 @@ public class Building {
 	}
 
 
+
 	public String getZipCode() {
 		return zipCode;
 	}
+
 
 
 	public void setZipCode(String zipCode) {
@@ -117,9 +130,11 @@ public class Building {
 	}
 
 
+
 	public String getCityAddress() {
 		return cityAddress;
 	}
+
 
 
 	public void setCityAddress(String cityAddress) {
@@ -127,15 +142,29 @@ public class Building {
 	}
 
 
-	public Point getCoordinate() {
-		return coordinate;
+
+	public double getLatitude() {
+		return latitude;
 	}
 
 
-	public void setCoordinate(Point coordinate) {
-		this.coordinate = coordinate;
 
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
+
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
 
 
 	public List<String> getPhotos() {
@@ -143,9 +172,11 @@ public class Building {
 	}
 
 
+
 	public void setPhotos(List<String> photos) {
 		this.photos = photos;
 	}
+
 
 
 	public String getDescription() {
@@ -153,9 +184,11 @@ public class Building {
 	}
 
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 
 	public Category getCategory() {
@@ -163,9 +196,11 @@ public class Building {
 	}
 
 
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
 
 
 	public int getConstructionYear() {
@@ -173,14 +208,17 @@ public class Building {
 	}
 
 
+
 	public void setConstructionYear(int constructionYear) {
 		this.constructionYear = constructionYear;
 	}
 
 
+
 	public String getArchitecte() {
 		return architecte;
 	}
+
 
 
 	public void setArchitecte(String architecte) {
@@ -192,9 +230,13 @@ public class Building {
 	@Override
 	public String toString() {
 		return "Building [idBuilding=" + idBuilding + ", name=" + name + ", streetNumber=" + streetNumber
-				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", cityAddress=" + cityAddress + ", coordinate="
-				+ coordinate + ", photos=" + photos + ", description=" + description + ", category=" + category
-				+ ", constructionYear=" + constructionYear + ", architecte=" + architecte + "]";
+				+ ", streetName=" + streetName + ", zipCode=" + zipCode + ", cityAddress=" + cityAddress + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", photos=" + photos + ", description=" + description
+				+ ", category=" + category + ", constructionYear=" + constructionYear + ", architecte=" + architecte
+				+ "]";
 	}
+
+  
+	
 	
 }
