@@ -1,12 +1,12 @@
 package vmc.javafxui.UiController;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import vmc.javafxui.beans.UserBean;
 import vmc.javafxui.proxies.UserProxy;
 
@@ -29,6 +28,8 @@ import vmc.javafxui.proxies.UserProxy;
 @Controller
 public class LoginController implements Initializable {
 
+	private final ApplicationContext appContext;
+	
 	@FXML
 	Button connexionButton;
 	@FXML
@@ -41,7 +42,8 @@ public class LoginController implements Initializable {
 	
 	Resource appMainuiFxml;
 
-	public LoginController(@Value("classpath:/appMainUi.fxml") Resource appMainuiFxml) {
+	public LoginController(@Value("classpath:/appMainUi.fxml") Resource appMainuiFxml, ApplicationContext appContext) {
+		this.appContext = appContext;
 		this.appMainuiFxml = appMainuiFxml;
 	}
 
@@ -58,19 +60,18 @@ public class LoginController implements Initializable {
 			 Stage stage;
 			 Parent root;
 			 stage = (Stage) connexionButton.getScene().getWindow();
-	         root = FXMLLoader.load(this.appMainuiFxml.getURL());
+			 FXMLLoader fxmlLoader = new FXMLLoader(this.appMainuiFxml.getURL());
+			 fxmlLoader.setControllerFactory(appContext::getBean);
+	         root = fxmlLoader.load();
 	         Scene scene = new Scene(root);
 	         //stage.close();
 	         stage.setScene(scene);
 	         stage.show();
-			
 		}
-
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		loginField.setText("admin@mail");
 		passwordField.setText("admin");
 	}
