@@ -1,6 +1,5 @@
 package vmc.javafxui.UiController;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import vmc.javafxui.beans.UserBean;
 import vmc.javafxui.proxies.UserProxy;
 
@@ -63,14 +61,11 @@ public class LoginController implements Initializable {
 	         //stage.close();
 	         stage.setScene(scene);
 	         stage.show();
-			
 		}
-
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		loginField.setText("admin@mail");
 		passwordField.setText("admin");
 	}
