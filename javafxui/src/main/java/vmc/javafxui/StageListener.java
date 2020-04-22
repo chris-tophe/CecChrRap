@@ -18,13 +18,14 @@ import javafx.stage.Stage;
 public class StageListener implements ApplicationListener<StageReadyEvent> {
 	
 	private final String appTitle;
-	private final Resource fxml;
+	private final Resource loginUiFxml;
 	private final ApplicationContext appContext;
 	
 	public StageListener(@Value("${spring.application.ui.title}") String appTitle,
-			@Value("classpath:/mainui.fxml") Resource resource, ApplicationContext appContext) {
+			@Value("classpath:/loginUi.fxml") Resource loginUiFxml,
+			ApplicationContext appContext) {
 		this.appTitle = appTitle;
-		this.fxml = resource;
+		this.loginUiFxml = loginUiFxml;
 		this.appContext = appContext;
 	}
 
@@ -33,12 +34,12 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
 		
 		try {
 			Stage stage = event.getStage();
-			URL url = this.fxml.getURL();
-			FXMLLoader fxmlLoader = new FXMLLoader(url);
-			fxmlLoader.setControllerFactory(appContext::getBean);
-			Parent root = fxmlLoader.load();
-			Scene scene = new Scene(root,600,600);
-			stage.setScene(scene);
+			URL urlLogin = this.loginUiFxml.getURL();
+			FXMLLoader fxmlLoginLoader = new FXMLLoader(urlLogin);
+			fxmlLoginLoader.setControllerFactory(appContext::getBean);
+			Parent login = fxmlLoginLoader.load();
+			Scene sceneLogin = new Scene(login);
+			stage.setScene(sceneLogin);
 			stage.setTitle(this.appTitle);
 			stage.show();
 		} catch (IOException e) {
