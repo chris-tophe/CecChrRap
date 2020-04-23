@@ -5,6 +5,6 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.CityUiController">
 	<children>
-       	<ListView fx:id="cities" onMouseClicked="#cityClick" />
+       	<ListView fx:id="CityListView" onMouseClicked="#cityClick" />
  	</children>
 </VBox>
