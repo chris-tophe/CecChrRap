@@ -32,7 +32,7 @@ public class CityUiController {
 	@FXML
 	public void initialize() {
 		// Rend les villes de la liste sélectionnables
-		CityListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		CityListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
 	public void refresh() {
@@ -59,8 +59,9 @@ public class CityUiController {
 	public void cityClick(Event e) throws Exception {
 		ObservableList<CityBean> selectedCity;
 		selectedCity = CityListView.getSelectionModel().getSelectedItems();
+		if (!selectedCity.isEmpty())
+			main.setSelectCity(selectedCity.get(0));
 		//System.out.println("You selected city with id : " + selectedCity.get(0).getIdCity());
-		main.setSelectCity(selectedCity.get(0));
 	}
 	
 	

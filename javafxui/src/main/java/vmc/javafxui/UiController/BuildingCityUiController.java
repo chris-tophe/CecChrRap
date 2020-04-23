@@ -35,7 +35,7 @@ public class BuildingCityUiController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Rend les bâtiments de la liste sélectionnables
-		BuildingCityListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		BuildingCityListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
 	public void refresh() {
@@ -73,7 +73,8 @@ public class BuildingCityUiController implements Initializable {
 	public void buildingCityClick(Event e) throws Exception {
 		ObservableList<BuildingCityBean> selectedBuilding;
 		selectedBuilding = BuildingCityListView.getSelectionModel().getSelectedItems();
-		//System.out.println("You selected the building with id : " + selectedBuilding.get(0).getIdBuildingCity());
+		if (!selectedBuilding.isEmpty())
 		main.setSelectBuilding(selectedBuilding.get(0).getIdBuildingCity());
+		//System.out.println("You selected the building with id : " + selectedBuilding.get(0).getIdBuildingCity());
 	}
 }
