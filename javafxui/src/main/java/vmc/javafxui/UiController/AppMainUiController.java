@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import vmc.javafxui.beans.BuildingCityBean;
+import vmc.javafxui.beans.CityBean;
 import vmc.javafxui.proxies.CityProxy;
 
 
@@ -30,46 +31,76 @@ import vmc.javafxui.proxies.CityProxy;
 @Controller
 public class AppMainUiController implements Initializable{
 	
-	Resource buildingCityUi;
+	Resource buildingCityUi, cityUi;
 	private final ApplicationContext appContext;
+	
+	BuildingCityUiController buildingCityUiController = new BuildingCityUiController() ;
+	CityUiController cityUiController = new CityUiController(); 
 		
 	@FXML
-	AnchorPane buildingCityViewPane;
+	AnchorPane buildingCityViewPane, cityViewPane;
 	
 	@Autowired
 	CityProxy cities;
 	
 	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
+	private List<CityBean> cityList = new LinkedList<CityBean>();
 	
 	
-	public AppMainUiController(@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi, ApplicationContext appContext  ) {
+	public AppMainUiController(
+			@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi,
+			@Value("classpath:/cityUi.fxml") Resource cityUi,
+			ApplicationContext appContext  ) {
 		this.buildingCityUi = buildingCityUi;
+		this.cityUi = cityUi;
 		this.appContext = appContext;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		VBox listViewBuildingCity = new VBox();
-		BuildingCityUiController buildingCityUiController = new BuildingCityUiController() ;
+		VBox listViewCity = new VBox();
+		
 		try {
 			FXMLLoader buildingCityUiLoader = new FXMLLoader(this.buildingCityUi.getURL());
+			FXMLLoader cityUiLoader = new FXMLLoader(this.cityUi.getURL());
+			
 			buildingCityUiLoader.setControllerFactory(appContext::getBean);
+			cityUiLoader.setControllerFactory(appContext::getBean);
+			
 			listViewBuildingCity = (VBox) buildingCityUiLoader.load();
+			listViewCity = (VBox) cityUiLoader.load();
+			
 			buildingCityUiController = buildingCityUiLoader.getController() ;
+			cityUiController = cityUiLoader.getController() ;
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		AnchorPane.setBottomAnchor(listViewBuildingCity, (double) 0);
 		AnchorPane.setTopAnchor(listViewBuildingCity,  (double) 0);
 		AnchorPane.setLeftAnchor(listViewBuildingCity, (double)  0);
 		AnchorPane.setRightAnchor(listViewBuildingCity, (double)  0);
+		
+		AnchorPane.setBottomAnchor(listViewCity, (double) 0);
+		AnchorPane.setTopAnchor(listViewCity,  (double) 0);
+		AnchorPane.setLeftAnchor(listViewCity, (double)  0);
+		AnchorPane.setRightAnchor(listViewCity, (double)  0);
+		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
 		this.buildingCityList = cities.getBuildingByCityId(2);
 		buildingCityUiController.refresh();
 		
+		cityViewPane.getChildren().add(listViewCity);
+		cityUiController.setMainApp(this);
+		this.cityList = cities.getCities();
+		cityUiController.refresh();
+		
 	}
 
 	public List<BuildingCityBean> getBuildingCityList(){return buildingCityList;}
+	public List<CityBean> getCityList(){return cityList;}
 
 }
