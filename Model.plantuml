@@ -62,13 +62,14 @@ class Building{
     - String streetName
     - String zipCode
     - String city
-    - Point coordinate
+    - String latitude
+    - String longitude
     - List<String> photos
     - String description
     - Category category
     - int constructionYear
     - String architect
-
+    
     + int getIdBuilding()
     + void setIdBuilding(int idBuilding)
     + String getName()
@@ -81,8 +82,10 @@ class Building{
     + void setZipCode(String zipCode)
     + String getCity()
     + void setCity(String city)
-    + Point getCoordinate()
-    + void setCoordinate(Point coordinate)
+    + String getLatitude()
+    + void setLatitude(String latitude)
+    + String getLongitude()
+    + void setLongitude(String longitude)
     + List<String> getPhotos()
     + void setPhotos(List<String> photos)
     + String getDescription()
