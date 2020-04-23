@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.BuildingDetailsUiController">
-   <children>
-      <ListView fx:id="BuildingDetailsView" />
-   </children>
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.BuildingDetailsUiController">  
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="152.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="buildingName" layoutX="19.0" layoutY="14.0" text="Nom">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="buildingAddress" layoutX="19.0" layoutY="50.0" text="Adresse">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+     </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="buildingPhotoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
 </VBox>

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import vmc.javafxui.beans.BuildingBean;
 
 @Component
@@ -18,14 +20,20 @@ public class BuildingDetailsUiController implements Initializable {
 	BuildingBean building;
 	
 	@FXML
-	ListView<BuildingBean> BuildingDetailsView;
+	private Label buildingName, buildingAddress;
+	
+	@FXML
+	private ImageView buildingPhotoView;
 	
 	AppMainUiController main;
 	
 	public void refresh() {
-		
-		BuildingDetailsView.getItems().clear();
-		BuildingDetailsView.getItems().addAll(main.getBuildingDetails());
+		BuildingBean building = main.getBuildingDetails();
+		buildingName.setText(building.getName());
+		buildingAddress.setText(building.getStreetNumber() + " " + building.getStreetName() + "\n"  + building.getCityAddress());
+		String buildingPhotoUrl = building.getPhotos().get(1);
+		Image buildingPhoto = new Image(buildingPhotoUrl);
+		buildingPhotoView.setImage(buildingPhoto);
 		
 	}
 	
