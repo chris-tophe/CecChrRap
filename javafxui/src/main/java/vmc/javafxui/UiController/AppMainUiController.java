@@ -108,7 +108,6 @@ public class AppMainUiController implements Initializable{
 		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
-		//this.buildingCityList = cities.getBuildingByCityId();
 		buildingCityUiController.refresh();
 		
 		cityViewPane.getChildren().add(listViewCity);
@@ -118,9 +117,6 @@ public class AppMainUiController implements Initializable{
 		
 		buildingDetailsPane.getChildren().add(listViewBuildingDetails);
 		buildingDetailsUiController.setMainApp(this);
-		this.buildingDetails = buildings.oneBuilding(1);
-		buildingDetailsUiController.refresh();
-		
 	}
 
 	// Retourne la liste des bâtiments d'une ville
@@ -128,6 +124,8 @@ public class AppMainUiController implements Initializable{
 
 	// Retourne la liste des villes
 	public List<CityBean> getCityList(){return cityList;}
+	
+	// Retourne les détails d'un bâtiment
 	public BuildingBean getBuildingDetails(){return buildingDetails;}
 	
 	
@@ -140,7 +138,7 @@ public class AppMainUiController implements Initializable{
 	// Détermine le bâtiment sélectionné
 	public void setSelectBuilding(int idBuilding) {
 		this.buildingDetails = buildings.oneBuilding(idBuilding);
-		//BuildingDetailsUiController.refresh();
+		buildingDetailsUiController.refresh();
 	}
 
 }
