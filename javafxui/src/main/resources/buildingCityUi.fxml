@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.BuildingCityUiController">
    <children>
       <ListView fx:id="BuildingCityListView" />
    </children>

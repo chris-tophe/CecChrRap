@@ -1,5 +1,6 @@
 package vmc.javafxui.beans;
 
+
 public class BuildingCityBean {
 
 	private int idBuildingCity;
