@@ -140,7 +140,7 @@ public class AppMainUiController implements Initializable{
 	// Détermine le bâtiment sélectionné
 	public void setSelectBuilding(int idBuilding) {
 		this.buildingDetails = buildings.oneBuilding(idBuilding);
-		BuildingDetailsUiController.refresh();
+		//BuildingDetailsUiController.refresh();
 	}
 
 }
