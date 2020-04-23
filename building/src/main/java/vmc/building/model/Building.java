@@ -27,9 +27,9 @@ public class Building {
 	
 	private String cityAddress;
 	
-	String latitude;
+	private String latitude;
 	
-	String longitude;
+	private String longitude;
 
 	@ElementCollection
 	private List<String> photos;

@@ -18,9 +18,9 @@ public class BuildingBean {
 	
 	private String cityAddress;
 	
-	String latitude;
+	private String latitude;
 	
-	String longitude;
+	private String longitude;
 
 	private List<String> photos;
 	
