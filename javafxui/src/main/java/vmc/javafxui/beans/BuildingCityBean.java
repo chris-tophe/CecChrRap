@@ -12,7 +12,7 @@ public class BuildingCityBean {
 	public BuildingCityBean() {
 		
 	}
-
+	
 	public BuildingCityBean(int idBuildingCity, String name, String photoUrl) {
 		this.idBuildingCity = idBuildingCity;
 		this.name = name;
@@ -45,7 +45,7 @@ public class BuildingCityBean {
 
 	@Override
 	public String toString() {
-		return "BuildingCity [idBuildingCity=" + idBuildingCity + ", name=" + name + ", photoUrl=" + photoUrl + "]";
+		return "BuildingCityBean [idBuildingCity=" + idBuildingCity + ", name=" + name + ", photoUrl=" + photoUrl + "]";
 	}
 	
 }
