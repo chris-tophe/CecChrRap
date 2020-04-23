@@ -9,32 +9,33 @@ import org.springframework.stereotype.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
-import vmc.javafxui.beans.BuildingCityBean;
+import vmc.javafxui.beans.BuildingBean;
 
 @Component
 @Controller
-public class BuildingCityUiController implements Initializable {
-	
-	BuildingCityBean city;
+public class BuildingDetailsUiController implements Initializable {
+
+	BuildingBean building;
 	
 	@FXML
-	ListView<BuildingCityBean> BuildingCityListView;
+	ListView<BuildingBean> BuildingDetailsView;
 	
 	AppMainUiController main;
 	
 	public void refresh() {
 		
-		BuildingCityListView.getItems().clear();
-		BuildingCityListView.getItems().addAll(main.getBuildingCityList());
+		BuildingDetailsView.getItems().clear();
+		BuildingDetailsView.getItems().addAll(main.getBuildingDetails());
 		
 	}
 	
 	public void setMainApp(AppMainUiController mainApp) {
-        this.main = mainApp;
+        
+		this.main = mainApp;
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
 	}
 }

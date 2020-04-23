@@ -22,8 +22,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import vmc.javafxui.beans.BuildingBean;
 import vmc.javafxui.beans.BuildingCityBean;
 import vmc.javafxui.beans.CityBean;
+import vmc.javafxui.proxies.BuildingProxy;
 import vmc.javafxui.proxies.CityProxy;
 
 
@@ -31,28 +33,35 @@ import vmc.javafxui.proxies.CityProxy;
 @Controller
 public class AppMainUiController implements Initializable{
 	
-	Resource buildingCityUi, cityUi;
+	Resource buildingCityUi, cityUi, buildingDetailsUi;
 	private final ApplicationContext appContext;
 	
 	BuildingCityUiController buildingCityUiController = new BuildingCityUiController() ;
-	CityUiController cityUiController = new CityUiController(); 
+	CityUiController cityUiController = new CityUiController();
+	BuildingDetailsUiController buildingDetailsUiController = new BuildingDetailsUiController() ;
 		
 	@FXML
-	AnchorPane buildingCityViewPane, cityViewPane;
+	AnchorPane buildingCityViewPane, cityViewPane, buildingDetailsPane;
 	
 	@Autowired
 	CityProxy cities;
 	
+	@Autowired
+	BuildingProxy buildings;
+	
 	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
 	private List<CityBean> cityList = new LinkedList<CityBean>();
+	private BuildingBean buildingDetails = new BuildingBean();
 	
 	
 	public AppMainUiController(
 			@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi,
 			@Value("classpath:/cityUi.fxml") Resource cityUi,
+			@Value("classpath:/buildingDetailsUi.fxml") Resource buildingDetailsUi,
 			ApplicationContext appContext  ) {
 		this.buildingCityUi = buildingCityUi;
 		this.cityUi = cityUi;
+		this.buildingDetailsUi = buildingDetailsUi;
 		this.appContext = appContext;
 	}
 
@@ -60,19 +69,24 @@ public class AppMainUiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		VBox listViewBuildingCity = new VBox();
 		VBox listViewCity = new VBox();
+		VBox listViewBuildingDetails = new VBox();
 		
 		try {
 			FXMLLoader buildingCityUiLoader = new FXMLLoader(this.buildingCityUi.getURL());
 			FXMLLoader cityUiLoader = new FXMLLoader(this.cityUi.getURL());
+			FXMLLoader buildingDetailsUiLoader = new FXMLLoader(this.buildingDetailsUi.getURL());
 			
 			buildingCityUiLoader.setControllerFactory(appContext::getBean);
 			cityUiLoader.setControllerFactory(appContext::getBean);
+			buildingDetailsUiLoader.setControllerFactory(appContext::getBean);
 			
 			listViewBuildingCity = (VBox) buildingCityUiLoader.load();
 			listViewCity = (VBox) cityUiLoader.load();
+			listViewBuildingDetails = (VBox) buildingDetailsUiLoader.load();
 			
 			buildingCityUiController = buildingCityUiLoader.getController() ;
 			cityUiController = cityUiLoader.getController() ;
+			buildingDetailsUiController = buildingDetailsUiLoader.getController() ;
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -88,6 +102,11 @@ public class AppMainUiController implements Initializable{
 		AnchorPane.setLeftAnchor(listViewCity, (double)  0);
 		AnchorPane.setRightAnchor(listViewCity, (double)  0);
 		
+		AnchorPane.setBottomAnchor(listViewBuildingDetails, (double) 0);
+		AnchorPane.setTopAnchor(listViewBuildingDetails,  (double) 0);
+		AnchorPane.setLeftAnchor(listViewBuildingDetails, (double)  0);
+		AnchorPane.setRightAnchor(listViewBuildingDetails, (double)  0);
+		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
 		this.buildingCityList = cities.getBuildingByCityId(2);
@@ -98,9 +117,21 @@ public class AppMainUiController implements Initializable{
 		this.cityList = cities.getCities();
 		cityUiController.refresh();
 		
+		buildingDetailsPane.getChildren().add(listViewBuildingDetails);
+		buildingDetailsUiController.setMainApp(this);
+		this.buildingDetails = buildings.oneBuilding(1);
+		buildingDetailsUiController.refresh();
+		
 	}
 
 	public List<BuildingCityBean> getBuildingCityList(){return buildingCityList;}
 	public List<CityBean> getCityList(){return cityList;}
+	public BuildingBean getBuildingDetails(){return buildingDetails;}
+	
+	// Détermine le bâtiment sélectionné
+    public void setSelectBuilding(int idBuilding) {
+        //this.buildingDetails = (List<BuildingBean>) buildings.oneBuilding(idBuilding);
+        //BuildingDetailsUiController.refresh();
+    }
 
 }
