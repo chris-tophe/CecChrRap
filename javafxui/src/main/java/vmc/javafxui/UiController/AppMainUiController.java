@@ -22,8 +22,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import vmc.javafxui.beans.BuildingBean;
 import vmc.javafxui.beans.BuildingCityBean;
 import vmc.javafxui.beans.CityBean;
+import vmc.javafxui.proxies.BuildingProxy;
 import vmc.javafxui.proxies.CityProxy;
 
 
@@ -43,9 +45,11 @@ public class AppMainUiController implements Initializable{
 	@Autowired
 	CityProxy cities;
 	
+	@Autowired
+	BuildingProxy buildingProxy;
+	
 	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
 	private List<CityBean> cityList = new LinkedList<CityBean>();
-	
 	
 	public AppMainUiController(
 			@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi,
@@ -90,7 +94,7 @@ public class AppMainUiController implements Initializable{
 		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
-		this.buildingCityList = cities.getBuildingByCityId(2);
+		//this.buildingCityList = cities.getBuildingByCityId();
 		buildingCityUiController.refresh();
 		
 		cityViewPane.getChildren().add(listViewCity);
@@ -100,7 +104,22 @@ public class AppMainUiController implements Initializable{
 		
 	}
 
+	// Retourne la liste des bâtiments d'une ville
 	public List<BuildingCityBean> getBuildingCityList(){return buildingCityList;}
+
+	// Retourne la liste des villes
 	public List<CityBean> getCityList(){return cityList;}
+	
+	// Détermine la liste des bâtiments selon la ville sélectionnée
+	public void setSelectCity(CityBean city) {
+		this.buildingCityList = cities.getBuildingByCityId(city.getIdCity());
+		buildingCityUiController.refresh();
+	}
+	
+	// Détermine le bâtiment sélectionné
+	public void setSelectBuilding(int idBuilding) {
+		this.buildingDetails = buildingProxy.oneBuilding(idBuilding);
+		buildingUiController.refresh();
+	}
 
 }
