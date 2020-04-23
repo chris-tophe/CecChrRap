@@ -24,28 +24,36 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import vmc.javafxui.beans.BuildingBean;
 import vmc.javafxui.beans.BuildingCityBean;
+import vmc.javafxui.beans.BuildingUserBean;
 import vmc.javafxui.beans.CityBean;
+import vmc.javafxui.beans.UserBean;
 import vmc.javafxui.proxies.BuildingProxy;
 import vmc.javafxui.proxies.CityProxy;
-
+import vmc.javafxui.proxies.UserProxy;
 
 @Component
 @Controller
-public class AppMainUiController implements Initializable{
+public class AppMainUiController implements Initializable {
+
+	Resource buildingCityUi, cityUi , buildingUserUi;
 	
-	Resource buildingCityUi, cityUi, buildingDetailsUi;
 	private final ApplicationContext appContext;
 	
-	BuildingCityUiController buildingCityUiController = new BuildingCityUiController() ;
+	BuildingCityUiController buildingCityUiController = new BuildingCityUiController();
 	CityUiController cityUiController = new CityUiController();
-	BuildingDetailsUiController buildingDetailsUiController = new BuildingDetailsUiController() ;
-		
-	@FXML
-	AnchorPane buildingCityViewPane, cityViewPane, buildingDetailsPane;
+	BuildingUserUiController buildingUserUiController = new BuildingUserUiController();
 	
+	UserBean user = new UserBean();
+	
+	@FXML
+	AnchorPane buildingCityViewPane, cityViewPane, buildingUserViewPane;
+
 	@Autowired
 	CityProxy cities;
-	
+
+	@Autowired
+	UserProxy userProxy;
+
 	@Autowired
 	BuildingProxy buildings;
 	
@@ -69,38 +77,50 @@ public class AppMainUiController implements Initializable{
 		VBox listViewBuildingCity = new VBox();
 		VBox listViewCity = new VBox();
 		VBox listViewBuildingDetails = new VBox();
-		
+		VBox listViewBuildingUser = new VBox();
+      
 		try {
 			FXMLLoader buildingCityUiLoader = new FXMLLoader(this.buildingCityUi.getURL());
 			FXMLLoader cityUiLoader = new FXMLLoader(this.cityUi.getURL());
 			FXMLLoader buildingDetailsUiLoader = new FXMLLoader(this.buildingDetailsUi.getURL());
+      FXMLLoader buildingUserUiLoader = new FXMLLoader(this.buildingUserUi.getURL());
 			
 			buildingCityUiLoader.setControllerFactory(appContext::getBean);
 			cityUiLoader.setControllerFactory(appContext::getBean);
 			buildingDetailsUiLoader.setControllerFactory(appContext::getBean);
+      buildingUserUiLoader.setControllerFactory(appContext::getBean);
 			
 			listViewBuildingCity = (VBox) buildingCityUiLoader.load();
 			listViewCity = (VBox) cityUiLoader.load();
 			listViewBuildingDetails = (VBox) buildingDetailsUiLoader.load();
+      listViewBuildingUser = (VBox) buildingUserUiLoader.load();
 			
 			buildingCityUiController = buildingCityUiLoader.getController() ;
 			cityUiController = cityUiLoader.getController() ;
 			buildingDetailsUiController = buildingDetailsUiLoader.getController() ;
+      buildingUserUiController = buildingUserUiLoader.getController();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		AnchorPane.setBottomAnchor(listViewBuildingCity, (double) 0);
-		AnchorPane.setTopAnchor(listViewBuildingCity,  (double) 0);
-		AnchorPane.setLeftAnchor(listViewBuildingCity, (double)  0);
-		AnchorPane.setRightAnchor(listViewBuildingCity, (double)  0);
-		
+		AnchorPane.setTopAnchor(listViewBuildingCity, (double) 0);
+		AnchorPane.setLeftAnchor(listViewBuildingCity, (double) 0);
+		AnchorPane.setRightAnchor(listViewBuildingCity, (double) 0);
+
 		AnchorPane.setBottomAnchor(listViewCity, (double) 0);
-		AnchorPane.setTopAnchor(listViewCity,  (double) 0);
-		AnchorPane.setLeftAnchor(listViewCity, (double)  0);
-		AnchorPane.setRightAnchor(listViewCity, (double)  0);
+		AnchorPane.setTopAnchor(listViewCity, (double) 0);
+		AnchorPane.setLeftAnchor(listViewCity, (double) 0);
+		AnchorPane.setRightAnchor(listViewCity, (double) 0);
 		
+
+		AnchorPane.setBottomAnchor(listViewBuildingUser, (double) 0);
+		AnchorPane.setTopAnchor(listViewBuildingUser, (double) 0);
+		AnchorPane.setLeftAnchor(listViewBuildingUser, (double) 0);
+		AnchorPane.setRightAnchor(listViewBuildingUser, (double) 0);
+
+
 		AnchorPane.setBottomAnchor(listViewBuildingDetails, (double) 0);
 		AnchorPane.setTopAnchor(listViewBuildingDetails,  (double) 0);
 		AnchorPane.setLeftAnchor(listViewBuildingDetails, (double)  0);
@@ -108,18 +128,42 @@ public class AppMainUiController implements Initializable{
 		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
-		//this.buildingCityList = cities.getBuildingByCityId();
-		buildingCityUiController.refresh();
-		
+
 		cityViewPane.getChildren().add(listViewCity);
 		cityUiController.setMainApp(this);
 		this.cityList = cities.getCities();
 		cityUiController.refresh();
 		
-		buildingDetailsPane.getChildren().add(listViewBuildingDetails);
+
+		buildingUserViewPane.getChildren().add(listViewBuildingUser);
+		buildingUserUiController.setMainApp(this);
+		buildingUserUiController.refresh();
+    
+    buildingDetailsPane.getChildren().add(listViewBuildingDetails);
 		buildingDetailsUiController.setMainApp(this);
 		this.buildingDetails = buildings.oneBuilding(1);
 		buildingDetailsUiController.refresh();
+	}
+
+
+	public List<BuildingUserBean> getBuildingUserList() {
+		return this.user.getBuildings();
+	}
+	
+	public void setUser(UserBean user) {
+		this.user = user;
+		buildingUserUiController.refresh();
+	}
+	//pas testé !
+	public void addBuildingToUser(BuildingBean building) {
+		BuildingUserBean buildingCity = new BuildingUserBean(building);
+		this.user.getBuildings().add(buildingCity);
+		userProxy.updateUser(this.user);
+		buildingUserUiController.refresh();
+	}
+	
+
+		
 		
 	}
 
@@ -142,5 +186,6 @@ public class AppMainUiController implements Initializable{
 		this.buildingDetails = buildings.oneBuilding(idBuilding);
 		//BuildingDetailsUiController.refresh();
 	}
+
 
 }

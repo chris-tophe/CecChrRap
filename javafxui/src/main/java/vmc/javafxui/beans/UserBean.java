@@ -9,10 +9,9 @@ public class UserBean {
 	private String email;
 	private String password;
 	private int role;
-	private List<BuildingUserBean> buildings;
+	private List<BuildingUserBean> buildings = new LinkedList<BuildingUserBean>();
 	
 	public UserBean() {
-		this.buildings = new LinkedList<BuildingUserBean>();
 	}
 
 	public int getIdUser() {

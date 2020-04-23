@@ -9,6 +9,12 @@ public class BuildingUserBean {
 	public BuildingUserBean() {
 		
 	}
+	
+	public BuildingUserBean( BuildingBean building ) {
+		this.idBuilding = building.getIdBuilding();
+		this.name = building.getName();
+		this.photo = building.getPhotos().get(0);
+	}
 
 	public int getIdBuilding() {
 		return idBuilding;
@@ -33,4 +39,10 @@ public class BuildingUserBean {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+
+	@Override
+	public String toString() {
+		return "BuildingUserBean [idBuilding=" + idBuilding + ", name=" + name + ", photo=" + photo + "]";
+	}
+	
 }

@@ -21,8 +21,6 @@ import vmc.javafxui.beans.BuildingCityBean;
 @Controller
 public class BuildingCityUiController implements Initializable {
 	
-	BuildingCityBean city;
-	
 	@FXML
 	ListView<BuildingCityBean> BuildingCityListView;
 	
@@ -66,7 +64,6 @@ public class BuildingCityUiController implements Initializable {
 				}
 			}
 		});
-		
 	}
 	
 	// Récupère des informations d'un bâtiment sélectionné

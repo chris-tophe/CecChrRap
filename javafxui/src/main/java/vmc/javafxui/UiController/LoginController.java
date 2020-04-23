@@ -63,8 +63,9 @@ public class LoginController implements Initializable {
 			 FXMLLoader fxmlLoader = new FXMLLoader(this.appMainuiFxml.getURL());
 			 fxmlLoader.setControllerFactory(appContext::getBean);
 	         root = fxmlLoader.load();
+	         AppMainUiController controller = fxmlLoader.getController();
+	         controller.setUser(user);
 	         Scene scene = new Scene(root);
-	         //stage.close();
 	         stage.setScene(scene);
 	         stage.show();
 		}
