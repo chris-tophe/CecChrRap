@@ -17,18 +17,14 @@ import vmc.javafxui.beans.CityBean;
 @Controller
 public class BuildingCityUiController implements Initializable {
 	
-	BuildingCityBean city;
-	
 	@FXML
 	ListView<BuildingCityBean> BuildingCityListView;
 	
 	AppMainUiController main;
 	
-	public void refresh() {
-		
+	public void refresh() {		
 		BuildingCityListView.getItems().clear();
 		BuildingCityListView.getItems().addAll(main.getBuildingCityList());
-		
 	}
 	
 	public void setMainApp(AppMainUiController mainApp) {
