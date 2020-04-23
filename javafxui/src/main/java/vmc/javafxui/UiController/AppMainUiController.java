@@ -53,7 +53,6 @@ public class AppMainUiController implements Initializable{
 	private List<CityBean> cityList = new LinkedList<CityBean>();
 	private BuildingBean buildingDetails = new BuildingBean();
 	
-	
 	public AppMainUiController(
 			@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi,
 			@Value("classpath:/cityUi.fxml") Resource cityUi,
@@ -109,7 +108,7 @@ public class AppMainUiController implements Initializable{
 		
 		buildingCityViewPane.getChildren().add(listViewBuildingCity);
 		buildingCityUiController.setMainApp(this);
-		this.buildingCityList = cities.getBuildingByCityId(2);
+		//this.buildingCityList = cities.getBuildingByCityId();
 		buildingCityUiController.refresh();
 		
 		cityViewPane.getChildren().add(listViewCity);
@@ -124,14 +123,24 @@ public class AppMainUiController implements Initializable{
 		
 	}
 
+	// Retourne la liste des bâtiments d'une ville
 	public List<BuildingCityBean> getBuildingCityList(){return buildingCityList;}
+
+	// Retourne la liste des villes
 	public List<CityBean> getCityList(){return cityList;}
 	public BuildingBean getBuildingDetails(){return buildingDetails;}
 	
+	
+	// Détermine la liste des bâtiments selon la ville sélectionnée
+	public void setSelectCity(CityBean city) {
+		this.buildingCityList = cities.getBuildingByCityId(city.getIdCity());
+		buildingCityUiController.refresh();
+	}
+	
 	// Détermine le bâtiment sélectionné
-    public void setSelectBuilding(int idBuilding) {
-        //this.buildingDetails = (List<BuildingBean>) buildings.oneBuilding(idBuilding);
-        //BuildingDetailsUiController.refresh();
-    }
+	public void setSelectBuilding(int idBuilding) {
+		this.buildingDetails = buildings.oneBuilding(idBuilding);
+		BuildingDetailsUiController.refresh();
+	}
 
 }

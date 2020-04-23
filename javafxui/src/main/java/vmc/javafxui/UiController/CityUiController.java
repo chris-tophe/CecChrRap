@@ -55,11 +55,12 @@ public class CityUiController {
 		
 	}
 	
-	// Récupère des informations d'une ville sélectionnée
+	// Récupère des informations d'une ville sélectionnée et envoie son id au contrôleur main pour refresh
 	public void cityClick(Event e) throws Exception {
 		ObservableList<CityBean> selectedCity;
 		selectedCity = CityListView.getSelectionModel().getSelectedItems();
-		System.out.println("You selected city with id : " + selectedCity.get(0).getIdCity());
+		//System.out.println("You selected city with id : " + selectedCity.get(0).getIdCity());
+		main.setSelectCity(selectedCity.get(0));
 	}
 	
 	
