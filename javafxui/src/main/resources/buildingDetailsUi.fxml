@@ -3,29 +3,16 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.BuildingDetailsUiController">  
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="152.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="buildingName" layoutX="19.0" layoutY="14.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="buildingAddress" layoutX="19.0" layoutY="50.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         <Button layoutX="87.0" layoutY="113.0" mnemonicParsing="false" text="Ajout à ma liste" />
-         </children>
-     </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <ImageView fx:id="buildingPhotoView" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </AnchorPane>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.BuildingDetailsUiController">
+      <Label fx:id="buildingName">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+      </Label>
+      <Label fx:id="buildingAddress" />
+      <ImageView fx:id="buildingPhotoView" fitHeight="191.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+   <Button mnemonicParsing="false" text="Ajout à ma liste" />
 </VBox>
