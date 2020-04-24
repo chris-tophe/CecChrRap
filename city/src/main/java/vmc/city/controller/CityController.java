@@ -64,7 +64,7 @@ public class CityController {
 		if (c.isPresent()) {
 			List<BuildingCity> b = c.get().getBuildings();
 			if (building < b.size()) {
-				return b.get(building);
+				return b.get(building - 1);
 			}
 		}
 		return null;
@@ -96,7 +96,7 @@ public class CityController {
 	@PutMapping(value = "/city/{id}/building")
 	public BuildingCity putBuilding(@RequestBody BuildingCity buildingCity, @PathVariable int id) {
 		Optional<City> c = cities.findById(id);
-		if (c.get().getBuildings().get(buildingCity.getIdBuildingCity()) != null) {
+		if (c.get().getBuildings() != null) {
 			return buildings.save(buildingCity);
 		}
 		return null;
