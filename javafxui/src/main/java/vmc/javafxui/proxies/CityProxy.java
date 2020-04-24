@@ -42,6 +42,9 @@ public interface CityProxy {
 	@PutMapping(value = "/city")
 	public CityBean updateCity(@RequestBody CityBean city);
 	
+	@PutMapping(value = "/city/{id}/building")
+	public BuildingCityBean updateBuildingInCityList(@RequestBody BuildingCityBean building, @PathVariable("id") int id);
+	
 	@DeleteMapping(value = "/city/{id}")
 	public ResponseEntity<CityBean> deleteCity(@PathVariable("id") int id);
 	
