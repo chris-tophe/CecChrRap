@@ -1,0 +1,4 @@
+2020-04-24 17:34:52 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Erreur de syntaxe dans l'instruction SQL "DESCRIPTION[*] DESCRIPTION BUILDING"; attendu "DELETE, DROP, DECLARE, DEALLOCATE"
+Syntax error in SQL statement "DESCRIPTION[*] DESCRIPTION BUILDING"; expected "DELETE, DROP, DECLARE, DEALLOCATE"; SQL statement:
+DESCRIPTION DESCRIPTION BUILDING [42001-200]

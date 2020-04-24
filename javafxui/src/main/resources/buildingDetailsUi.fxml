@@ -14,5 +14,6 @@
       </Label>
       <Label fx:id="buildingAddress" />
       <ImageView fx:id="buildingPhotoView" fitHeight="191.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+   <Label fx:id="buildingDescription" />
    <Button fx:id="addBuildingUserButton" mnemonicParsing="false" onMouseClicked="#addBuildingToUserClick" text="Ajout à ma liste" />
 </VBox>

@@ -208,7 +208,7 @@ public class AppMainUiController implements Initializable {
 			Stage addModStage = new Stage();
 			Scene addModScene = new Scene(addModBuilginScreenScene);
 			addModStage.setScene(addModScene);
-			addModStage.setTitle("Batiment");
+			addModStage.setTitle("Création d'un bâtiment");
 			addModStage.show();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -226,7 +226,7 @@ public class AppMainUiController implements Initializable {
 			Stage addModStage = new Stage();
 			Scene addModScene = new Scene(addModCityScreenScene);
 			addModStage.setScene(addModScene);
-			addModStage.setTitle("Ville");
+			addModStage.setTitle("Création d'une ville");
 			addModStage.show();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
