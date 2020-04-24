@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import vmc.user.dao.BuildingUserDAO;
 import vmc.user.dao.UserDAO;
 import vmc.user.exceptions.UserNotFoundException;
+import vmc.user.model.BuildingUser;
 import vmc.user.model.User;
 
 @RestController
@@ -24,6 +26,9 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private BuildingUserDAO buildingUserDAO;
 
 	@GetMapping(value = "/user")
 	public List<User> listUsers() {
@@ -56,6 +61,11 @@ public class UserController {
 	@PutMapping(value = "/user")
 	public User updateUser(@RequestBody User user) {
 		Optional<User> selectedUser = userDAO.findById(user.getIdUser());
+		for(BuildingUser b : user.getBuildings()) {
+			Optional<BuildingUser> existingBuilding = buildingUserDAO.findById(b.getIdBuilding());
+			if (!existingBuilding.isPresent())
+				buildingUserDAO.save(b);
+		}
 		if(selectedUser.isPresent())
 			return userDAO.save(user);
 		return null;
