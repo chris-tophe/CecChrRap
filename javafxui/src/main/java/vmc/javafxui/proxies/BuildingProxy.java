@@ -26,7 +26,7 @@ public interface BuildingProxy {
 	public BuildingBean oneBuilding (@PathVariable int id);
 	
 	@PostMapping (value = "building")
-	public ResponseEntity<Void> addBuilding (@RequestBody BuildingBean building);
+	public BuildingBean addBuilding (@RequestBody BuildingBean building);
 	
 	@PutMapping (value = "/building")
 	public BuildingBean updateBuilding (@RequestBody BuildingBean building);

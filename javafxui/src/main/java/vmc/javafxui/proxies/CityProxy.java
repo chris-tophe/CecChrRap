@@ -37,7 +37,7 @@ public interface CityProxy {
 	public CityBean createCity(@RequestBody CityBean city);
 	
 	@PostMapping(value = "/city/{id}/building")
-	public BuildingCityBean addBuildingToCity(@RequestBody BuildingCityBean building);
+	public BuildingCityBean addBuildingToCity(@RequestBody BuildingCityBean building, @PathVariable("id") int id);
 	
 	@PutMapping(value = "/city")
 	public CityBean updateCity(@RequestBody CityBean city);

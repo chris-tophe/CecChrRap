@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.EditBuildingUiController">
    <children>
       <Label layoutX="34.0" layoutY="50.0" text="Nom" />
       <Label layoutX="32.0" layoutY="77.0" text="N°" />
@@ -31,8 +31,18 @@
       <TextField fx:id="contructionYearTextField" layoutX="422.0" layoutY="141.0" />
       <TextField fx:id="ArchitextTextField" layoutX="422.0" layoutY="168.0" />
       <ComboBox fx:id="categoryComboBox" layoutX="422.0" layoutY="118.0" prefWidth="150.0" />
-      <Button layoutX="505.0" layoutY="344.0" mnemonicParsing="false" text="Valider" />
-      <AnchorPane fx:id="photoPane" layoutX="27.0" layoutY="244.0" prefHeight="113.0" prefWidth="417.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-radius: 3; -fx-border-color: #a0a0a0; -fx-background-color: #ffffff;" />
-      <Label layoutX="36.0" layoutY="218.0" text="Photos" />
+      <Button layoutX="505.0" layoutY="344.0" mnemonicParsing="false" onMouseClicked="#editBuildingClick" text="Valider" />
+      <Label layoutX="34.0" layoutY="271.0" text="Photo 1 URL" />
+      <ComboBox fx:id="linkedCity" layoutX="422.0" layoutY="265.0" prefWidth="150.0" />
+      <Label layoutX="431.0" layoutY="234.0" text="Ville de rattachement">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="photo1TextField" layoutX="117.0" layoutY="265.0" prefHeight="25.0" prefWidth="181.0" />
+      <Label layoutX="34.0" layoutY="306.0" text="Photo 2 URL" />
+      <Label layoutX="34.0" layoutY="339.0" text="Photo 3 URL" />
+      <TextField fx:id="photo2TextField" layoutX="117.0" layoutY="300.0" prefHeight="25.0" prefWidth="181.0" />
+      <TextField fx:id="photo3TextField" layoutX="117.0" layoutY="334.0" prefHeight="25.0" prefWidth="181.0" />
    </children>
 </AnchorPane>
