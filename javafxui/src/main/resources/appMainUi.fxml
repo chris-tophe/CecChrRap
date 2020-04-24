@@ -22,7 +22,7 @@
                                  <children>
                                     <Label text="Les villes" />
                                     <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                    <Button mnemonicParsing="false" text="+">
+                                    <Button fx:id="addCityButton" mnemonicParsing="false" onMouseClicked="#displayCityWindow" text="+">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
