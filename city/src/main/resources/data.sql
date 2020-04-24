@@ -1,4 +1,4 @@
-INSERT INTO building_city VALUES (1,'Cathédrale Notre-Dame','https://en.wikipedia.org/wiki/File:Strasbourg_Cathedral_Exterior_-_Diliff.jpg');
+INSERT INTO building_city VALUES (1,'Cathédrale Notre-Dame','https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Strasbourg_Cathedral_Exterior_-_Diliff.jpg/1024px-Strasbourg_Cathedral_Exterior_-_Diliff.jpg');
 INSERT INTO building_city VALUES (2,'Barrage Vauban','https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ponts_Couverts_Strasbourg_FRA_001.JPG/1920px-Ponts_Couverts_Strasbourg_FRA_001.JPG');
 INSERT INTO building_city VALUES (3,'Maison des Tanneurs','https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Stra%C3%9Fburg_-_panoramio.jpg/1280px-Stra%C3%9Fburg_-_panoramio.jpg');
 INSERT INTO building_city VALUES (4,'Pixel Museum','https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Pixel_Museum_%2825%29.jpg/1200px-Pixel_Museum_%2825%29.jpg');
