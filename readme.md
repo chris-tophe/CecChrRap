@@ -8,11 +8,12 @@ Une fois celle ci démarrées lancer javafxui en tant que springboot app ou de
 java application en choisissant la classe VisitMyCities
 
 Utilisation :
-Après vous être logué vous pouvez clique sur une des villes dans la liste.
+Après vous être loguez, vous pouvez cliquer sur une des villes dans la liste.
 Cela met à jour la liste des bâtiments de cette ville.
-vous pouvez ensuite cliquer sur un des bâtiments pour voir ses détails.
-le bouton ajouter permet d'ajouter ce bâtiment a votre liste de visite.
+Vous pouvez ensuite cliquer sur un des bâtiments pour voir ses détails.
+Le bouton ajouter permet d'ajouter ce bâtiment à votre liste de visite.
 
+Ports sur localhost des api :
 building:9001
 city:9003
 user:9002
