@@ -66,7 +66,7 @@ public class BuildingCityUiController implements Initializable {
 		});
 	}
 	
-	// Récupère des informations d'un bâtiment sélectionné
+	// Récupère des informations d'un bâtiment sélectionné et envoie son id au contrôleur main pour refresh
 	public void buildingCityClick(Event e) throws Exception {
 		ObservableList<BuildingCityBean> selectedBuilding;
 		selectedBuilding = BuildingCityListView.getSelectionModel().getSelectedItems();
