@@ -92,6 +92,15 @@ public class CityController {
 		}
 		return null;
 	}
+	
+	@PutMapping(value = "/city/{id}/building")
+	public BuildingCity putBuilding(@RequestBody BuildingCity buildingCity, @PathVariable int id) {
+		Optional<City> c = cities.findById(id);
+		if (c.get().getBuildings().get(buildingCity.getIdBuildingCity()) != null) {
+			return buildings.save(buildingCity);
+		}
+		return null;
+	}
 
 	@DeleteMapping(value = "/city/{id}")
 	public ResponseEntity<City> deleteCity(@PathVariable int id) {
