@@ -89,11 +89,6 @@ public class EditBuildingUiController implements Initializable {
 		
 		CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
 		cityProxy.addBuildingToCity(newBuildingCityBean, selectedCity.getIdCity());
-		/*
-		selectedCity.addBuilding(newBuildingCityBean);
-		System.out.println(selectedCity);
-		cityProxy.updateCity(selectedCity);
-		*/
 	}
 
 }
