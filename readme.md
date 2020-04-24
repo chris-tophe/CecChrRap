@@ -1,11 +1,11 @@
 Visit My Cities
 
-Logiciel de planification de visite touristique de villes.
+Logiciel de planification de visite touristique de villes
 
 Lancement :
 Lancer les 3 applications building, city et user en tant que springboot app.
-Une fois celle ci démarrées lancer javafxui en tant que springboot app ou de
-java application en choisissant la classe VisitMyCities
+Une fois celles-ci démarrées, lancer javafxui en tant que springboot app ou de
+java application en choisissant la classe VisitMyCities.
 
 Utilisation :
 Après vous être loguez, vous pouvez cliquer sur une des villes dans la liste.
@@ -14,9 +14,9 @@ Vous pouvez ensuite cliquer sur un des bâtiments pour voir ses détails.
 Le bouton ajouter permet d'ajouter ce bâtiment à votre liste de visite.
 
 Ports sur localhost des api :
-building:9001
-city:9003
-user:9002
+building : 9001
+city : 9003
+user : 9002
 
 Auteurs:
 
