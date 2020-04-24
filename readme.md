@@ -14,9 +14,9 @@ Vous pouvez ensuite cliquer sur un des bâtiments pour voir ses détails.
 Le bouton ajouter permet d'ajouter ce bâtiment à votre liste de visite.
 
 Ports sur localhost des api :
-building : 9001
-city : 9003
-user : 9002
+building : 9001, 
+city : 9003, 
+user : 9002.
 
 Auteurs:
 
