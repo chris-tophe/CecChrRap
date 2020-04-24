@@ -44,7 +44,7 @@ public class BuildingController {
 	}
 	
 	@PostMapping (value = "building")
-	public ResponseEntity<Void> addBuilding (@RequestBody Building building) {
+	public ResponseEntity<Building> addBuilding (@RequestBody Building building) {
 		
 		Building newBuilding = BuildingDAO.save(building);
     	
@@ -57,7 +57,7 @@ public class BuildingController {
                 .buildAndExpand(newBuilding.getIdBuilding())
                 .toUri();
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(newBuilding);
 		
 	}
 	
