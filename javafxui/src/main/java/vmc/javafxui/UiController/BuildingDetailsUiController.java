@@ -6,8 +6,10 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,14 +25,15 @@ public class BuildingDetailsUiController implements Initializable {
 	private Label buildingName, buildingAddress;
 	
 	@FXML
+	Button addBuildingUserButton;
+	
+	@FXML
 	private ImageView buildingPhotoView;
 	
 	AppMainUiController main;
 	
 	public void refresh() {
-		
-		BuildingBean building = main.getBuildingDetails();
-		
+		this.building = main.getBuildingDetails();
 		buildingName.setText(building.getName());
 		
 		String adress = building.getStreetNumber() + " " + building.getStreetName() + "\n"  + building.getZipCode() + " " + building.getCityAddress();
@@ -52,5 +55,11 @@ public class BuildingDetailsUiController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+	}
+	
+	public void addBuildingToUserClick(Event event) {
+		if (this.building != null) {
+		this.main.addBuildingToUser(this.building);
+		}
 	}
 }

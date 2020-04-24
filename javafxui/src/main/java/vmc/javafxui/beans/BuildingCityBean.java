@@ -18,6 +18,12 @@ public class BuildingCityBean {
 		this.name = name;
 		this.photoUrl = photoUrl;
 	}
+	
+	public BuildingCityBean(BuildingBean buildingBean) {
+		this.idBuildingCity = buildingBean.getIdBuilding();
+		this.name = buildingBean.getName();
+		this.photoUrl = buildingBean.getPhotos().get(0);
+	}
 
 	public int getIdBuildingCity() {
 		return idBuildingCity;

@@ -78,8 +78,8 @@ public class CityController {
 	@PostMapping(value = "/city/{id}/building")
 	public BuildingCity postBuilding(@RequestBody BuildingCity building, @PathVariable int id) {
 		Optional<City> c = cities.findById(id);
-		c.get().addBuilding(building);
 		buildings.save(building);
+		c.get().addBuilding(building);
 		cities.save(c.get());
 		return building;
 	}

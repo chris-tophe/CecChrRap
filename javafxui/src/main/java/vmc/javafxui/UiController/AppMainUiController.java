@@ -44,27 +44,28 @@ public class AppMainUiController implements Initializable {
 
 	private final ApplicationContext appContext;
 
-	BuildingCityUiController buildingCityUiController = new BuildingCityUiController();
-	CityUiController cityUiController = new CityUiController();
-	BuildingUserUiController buildingUserUiController = new BuildingUserUiController();
-	BuildingDetailsUiController buildingDetailsUiController = new BuildingDetailsUiController();
-
-	UserBean user = new UserBean();
+	private BuildingCityUiController buildingCityUiController = new BuildingCityUiController();
+	private CityUiController cityUiController = new CityUiController();
+	private BuildingUserUiController buildingUserUiController = new BuildingUserUiController();
+	private BuildingDetailsUiController buildingDetailsUiController = new BuildingDetailsUiController();
+	private AddModCityScreenController addModCityScreenController = new AddModCityScreenController();
+	
+	private UserBean user = new UserBean();
 
 	@FXML
-	AnchorPane buildingCityViewPane, cityViewPane, buildingUserViewPane ,buildingDetailsPane;
+	private AnchorPane buildingCityViewPane, cityViewPane, buildingUserViewPane ,buildingDetailsPane;
 	
 	@FXML
-	Button addBuildingButton, modBuildingButton;
+	private Button addBuildingButton, modBuildingButton;
 
 	@Autowired
-	CityProxy cities;
+	private CityProxy cities;
 
 	@Autowired
-	UserProxy userProxy;
+	private UserProxy userProxy;
 
 	@Autowired
-	BuildingProxy buildings;
+	private BuildingProxy buildings;
 
 	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
 	private List<CityBean> cityList = new LinkedList<CityBean>();
@@ -163,12 +164,13 @@ public class AppMainUiController implements Initializable {
 		buildingUserUiController.refresh();
 	}
 
-	// pas testé !
+	// Add building to user then refresh view then save user to API 
 	public void addBuildingToUser(BuildingBean building) {
 		BuildingUserBean buildingCity = new BuildingUserBean(building);
 		this.user.getBuildings().add(buildingCity);
-		userProxy.updateUser(this.user);
 		buildingUserUiController.refresh();
+		userProxy.updateUser(this.user);
+		
 	}
 
 	// Retourne la liste des bâtiments d'une ville
@@ -220,8 +222,8 @@ public class AppMainUiController implements Initializable {
 			FXMLLoader addModCityScreenLoader = new FXMLLoader(this.addModCityScreen.getURL());
 			addModCityScreenLoader.setControllerFactory(appContext::getBean);
 			Parent addModCityScreenScene = addModCityScreenLoader.load();
-			//addModCityScreenController = addModCityScreenLoader.getController();
-			//addModCityScreenController.setMainApp(this);
+			addModCityScreenController = addModCityScreenLoader.getController();
+			addModCityScreenController.setMainApp(this);
 			Stage addModStage = new Stage();
 			Scene addModScene = new Scene(addModCityScreenScene);
 			addModStage.setScene(addModScene);
@@ -230,6 +232,12 @@ public class AppMainUiController implements Initializable {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public void createCity(CityBean city) {
+		cities.createCity(city);
+		cityList = cities.getCities();
+		cityUiController.refresh();
 	}
 
 }
