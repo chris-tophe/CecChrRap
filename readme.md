@@ -13,6 +13,9 @@ Cela met à jour la liste des bâtiments de cette ville.
 vous pouvez ensuite cliquer sur un des bâtiments pour voir ses détails.
 le bouton ajouter permet d'ajouter ce bâtiment a votre liste de visite.
 
+building:9001
+city:9003
+user:9002
 
 Auteurs:
 
