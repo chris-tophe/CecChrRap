@@ -59,6 +59,7 @@ public class EditBuildingUiController implements Initializable {
         this.main = mainApp;
     }
 	
+	// Pré-remplie les champs s'il s'agit d'une modification
 	public void setBuildingSelected(BuildingBean buildingSelected) {
 		this.buildingSaved = buildingSelected;
 		this.fillFormFields(
@@ -67,6 +68,14 @@ public class EditBuildingUiController implements Initializable {
 				zipCodeTextField, cityNameTextField, latitudeTextField, 
 				longitudeTextField, contructionYearTextField, ArchitextTextField, 
 				photo1TextField, photo2TextField, photo3TextField);
+		for (CityBean cityBean : cityProxy.getCities()) {
+			for (BuildingCityBean buildingCityBean : cityBean.getBuildings()) {
+				if (buildingCityBean.getIdBuildingCity() == buildingSelected.getIdBuilding()) {
+					linkedCity.getSelectionModel().select(linkedCity.getItems().get(cityBean.getIdCity() - 1));
+				}
+			}
+		}
+		
 	}
 
 	@Override
@@ -105,6 +114,7 @@ public class EditBuildingUiController implements Initializable {
 	
 	public void editBuildingClick(Event e) throws Exception {
 		
+		// S'il s'agit d'une création de bâtiment
 		if (buildingSaved == null) {
 			buildingSaved = new BuildingBean();
 			
@@ -125,13 +135,14 @@ public class EditBuildingUiController implements Initializable {
 				
 				Stage stage = (Stage) validateButton.getScene().getWindow();
 				stage.close();
-				
+				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding());
 				this.showAlertSuccess();
 			}
 			else {
 				this.showAlertEmptyFields();
 			}
 		}
+		// S'il s'agit d'une modification d'un bâtiment
 		else {
 			if (this.fillBuildingFields(
 					buildingSaved, descriptionTextField,
@@ -144,20 +155,34 @@ public class EditBuildingUiController implements Initializable {
 			{
 				BuildingBean BuildingSavedInAPI = buildingProxy.updateBuilding(buildingSaved);
 				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
-				BuildingCityBean buildingCityBean = cityProxy.getBuildingByPosition(selectedCity.getIdCity(), BuildingSavedInAPI.getIdBuilding());
+				
+				BuildingCityBean buildingCityBean = null;
+				for (BuildingCityBean buildingCityBeanSearched : cityProxy.getBuildingByCityId(selectedCity.getIdCity())) {
+					if (buildingCityBeanSearched.getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
+						buildingCityBean = buildingCityBeanSearched;
+					}
+				}
 				
 				if (buildingCityBean == null) {
+					for (CityBean cityBean : cityProxy.getCities()) {
+						for (BuildingCityBean buildingCitySeached : cityBean.getBuildings()) {
+							if (buildingCitySeached.getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
+								cityProxy.removeBuildingFromCity(cityBean.getIdCity(), buildingCitySeached.getIdBuildingCity());
+							}
+						}
+					}
+					buildingCityBean = new BuildingCityBean(BuildingSavedInAPI);
 					cityProxy.addBuildingToCity(buildingCityBean, selectedCity.getIdCity());
 				}
 				else {
 					buildingCityBean.setName(nameTextField.getText());
 					buildingCityBean.setPhotoUrl(photo1TextField.getText());
-					// Manque la sauvegarde du bâtiment dans la liste de la ville...
+					cityProxy.updateBuildingInCityList(buildingCityBean, selectedCity.getIdCity());
 				}
 				
 				Stage stage = (Stage) validateButton.getScene().getWindow();
 				stage.close();
-				
+				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding());
 				this.showAlertModSuccess();
 			}
 			else {
@@ -244,10 +269,10 @@ public class EditBuildingUiController implements Initializable {
     	else {
 			return false;
 		}
-    	if (!photo2.getText().trim().isEmpty()) {
+    	if (!photo2.getText().trim().isEmpty() || photo2.getText() != null) {
     		listPhotos.add(photo2.getText());
 		}
-    	if (!photo3.getText().trim().isEmpty()) {
+    	if (!photo3.getText().trim().isEmpty() || photo3.getText() != null) {
     		listPhotos.add(photo3.getText());
 		}
     	building.setPhotos(listPhotos);
@@ -266,74 +291,74 @@ public class EditBuildingUiController implements Initializable {
     		description.setText(building.getDescription());
 		}
     	else {
-			description.setText(null);
+			description.setText("");
 		}
     	if (building.getName() != null) {
     		name.setText(building.getName());
 		}
     	else {
-			name.setText(null);
+			name.setText("");
 		}
     	if (building.getStreetNumber() != null) {
     		streetNumber.setText(building.getStreetNumber());
 		}
     	else {
-			streetNumber.setText(null);
+			streetNumber.setText("");
 		}
     	if (building.getStreetName() != null) {
     		streetName.setText(building.getStreetName());
 		}
     	else {
-			streetName.setText(null);
+			streetName.setText("");
 		}
     	if (building.getZipCode() != null) {
     		zipCode.setText(building.getZipCode());
 		}
     	else {
-			zipCode.setText(null);
+			zipCode.setText("");
 		}
     	if (building.getCityAddress() != null) {
     		city.setText(building.getCityAddress());
 		}
     	else {
-			city.setText(null);
+			city.setText("");
 		}
     	if (building.getLatitude() != null) {
     		latitude.setText(building.getLatitude());
 		}
     	else {
-			latitude.setText(null);
+			latitude.setText("");
 		}
     	if (building.getLongitude() != null) {
     		longitude.setText(building.getLongitude());
 		}
     	else {
-			longitude.setText(null);
+			longitude.setText("");
 		}
     	year.setText(Integer.toString(building.getConstructionYear()));
     	if (building.getArchitecte() != null) {
     		architect.setText(building.getArchitecte());
 		}
     	else {
-			architect.setText(null);
+			architect.setText("");
 		}
     	if (building.getPhotos().get(0) != null) {
     		photo1.setText(building.getPhotos().get(0));
 		}
     	else {
-			photo1.setText(null);
+			photo1.setText("");
 		}
     	if (building.getPhotos().size() >= 2) {
     		photo2.setText(building.getPhotos().get(1));
 		}
     	else {
-			photo2.setText(null);
+			photo2.setText("");
 		}
     	if (building.getPhotos().size() >= 3) {
     		photo3.setText(building.getPhotos().get(2));
 		}
     	else {
-			photo3.setText(null);
+			photo3.setText("");
 		}
     }
     

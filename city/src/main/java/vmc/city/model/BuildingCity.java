@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class BuildingCity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idBuildingCity;
 	
 	private String name;
