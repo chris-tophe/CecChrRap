@@ -31,6 +31,7 @@ import vmc.javafxui.proxies.CityProxy;
 public class EditBuildingUiController implements Initializable {
 	
 	AppMainUiController main;
+	BuildingBean buildingSaved;
 	
 	@Autowired
 	BuildingProxy buildingProxy;
@@ -57,6 +58,16 @@ public class EditBuildingUiController implements Initializable {
 	public void setMainApp(AppMainUiController mainApp) {
         this.main = mainApp;
     }
+	
+	public void setBuildingSelected(BuildingBean buildingSelected) {
+		this.buildingSaved = buildingSelected;
+		this.fillFormFields(
+				buildingSelected, descriptionTextField, 
+				nameTextField, streetNumberTextField, streetTextField, 
+				zipCodeTextField, cityNameTextField, latitudeTextField, 
+				longitudeTextField, contructionYearTextField, ArchitextTextField, 
+				photo1TextField, photo2TextField, photo3TextField);
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -93,36 +104,68 @@ public class EditBuildingUiController implements Initializable {
 	}
 	
 	public void editBuildingClick(Event e) throws Exception {
-		BuildingBean newBuilding = new BuildingBean();
 		
-		
-
-		if (this.fillBuildingFields(
-				newBuilding, descriptionTextField,
-				nameTextField, streetNumberTextField, streetTextField, 
-				zipCodeTextField, cityNameTextField, latitudeTextField, 
-				longitudeTextField, contructionYearTextField, ArchitextTextField, 
-				photo1TextField, photo2TextField, photo3TextField
-				)
-			&& !linkedCity.getSelectionModel().isEmpty()) 
-		{
-			BuildingBean newBuildingCreated = buildingProxy.addBuilding(newBuilding);
-			System.out.println(newBuildingCreated);
+		if (buildingSaved == null) {
+			buildingSaved = new BuildingBean();
 			
-			BuildingCityBean newBuildingCityBean = new BuildingCityBean(newBuildingCreated);
-			System.out.println(newBuildingCityBean);
-			
-			CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
-			cityProxy.addBuildingToCity(newBuildingCityBean, selectedCity.getIdCity());
-			
-			Stage stage = (Stage) validateButton.getScene().getWindow();
-			stage.close();
-			
-			this.showAlertSuccess();
+			if (this.fillBuildingFields(
+					buildingSaved, descriptionTextField,
+					nameTextField, streetNumberTextField, streetTextField, 
+					zipCodeTextField, cityNameTextField, latitudeTextField, 
+					longitudeTextField, contructionYearTextField, ArchitextTextField, 
+					photo1TextField, photo2TextField, photo3TextField
+					)
+				&& !linkedCity.getSelectionModel().isEmpty()) 
+			{
+				BuildingBean BuildingSavedInAPI = buildingProxy.addBuilding(buildingSaved);
+				BuildingCityBean newBuildingCityBean = new BuildingCityBean(BuildingSavedInAPI);
+				
+				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
+				cityProxy.addBuildingToCity(newBuildingCityBean, selectedCity.getIdCity());
+				
+				Stage stage = (Stage) validateButton.getScene().getWindow();
+				stage.close();
+				
+				this.showAlertSuccess();
+			}
+			else {
+				this.showAlertEmptyFields();
+			}
 		}
 		else {
-			this.showAlertEmptyFields();
+			if (this.fillBuildingFields(
+					buildingSaved, descriptionTextField,
+					nameTextField, streetNumberTextField, streetTextField, 
+					zipCodeTextField, cityNameTextField, latitudeTextField, 
+					longitudeTextField, contructionYearTextField, ArchitextTextField, 
+					photo1TextField, photo2TextField, photo3TextField
+					)
+				&& !linkedCity.getSelectionModel().isEmpty()) 
+			{
+				BuildingBean BuildingSavedInAPI = buildingProxy.updateBuilding(buildingSaved);
+				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
+				BuildingCityBean buildingCityBean = cityProxy.getBuildingByPosition(selectedCity.getIdCity(), BuildingSavedInAPI.getIdBuilding());
+				
+				if (buildingCityBean == null) {
+					cityProxy.addBuildingToCity(buildingCityBean, selectedCity.getIdCity());
+				}
+				else {
+					buildingCityBean.setName(nameTextField.getText());
+					buildingCityBean.setPhotoUrl(photo1TextField.getText());
+					// Manque la sauvegarde du bâtiment dans la liste de la ville...
+				}
+				
+				Stage stage = (Stage) validateButton.getScene().getWindow();
+				stage.close();
+				
+				this.showAlertModSuccess();
+			}
+			else {
+				this.showAlertEmptyFields();
+			}
 		}
+		
+
 	}
     
     private boolean fillBuildingFields(
@@ -211,6 +254,89 @@ public class EditBuildingUiController implements Initializable {
     	return true;
     }
     
+    private void fillFormFields(
+    		BuildingBean building, TextArea description,
+    		TextField name, TextField streetNumber, TextField streetName,
+    		TextField zipCode, TextField city, TextField latitude, 
+    		TextField longitude, TextField year, TextField architect, 
+    		TextField photo1, TextField photo2, TextField photo3
+    		)
+    {
+    	if (building.getDescription() != null) {
+    		description.setText(building.getDescription());
+		}
+    	else {
+			description.setText(null);
+		}
+    	if (building.getName() != null) {
+    		name.setText(building.getName());
+		}
+    	else {
+			name.setText(null);
+		}
+    	if (building.getStreetNumber() != null) {
+    		streetNumber.setText(building.getStreetNumber());
+		}
+    	else {
+			streetNumber.setText(null);
+		}
+    	if (building.getStreetName() != null) {
+    		streetName.setText(building.getStreetName());
+		}
+    	else {
+			streetName.setText(null);
+		}
+    	if (building.getZipCode() != null) {
+    		zipCode.setText(building.getZipCode());
+		}
+    	else {
+			zipCode.setText(null);
+		}
+    	if (building.getCityAddress() != null) {
+    		city.setText(building.getCityAddress());
+		}
+    	else {
+			city.setText(null);
+		}
+    	if (building.getLatitude() != null) {
+    		latitude.setText(building.getLatitude());
+		}
+    	else {
+			latitude.setText(null);
+		}
+    	if (building.getLongitude() != null) {
+    		longitude.setText(building.getLongitude());
+		}
+    	else {
+			longitude.setText(null);
+		}
+    	year.setText(Integer.toString(building.getConstructionYear()));
+    	if (building.getArchitecte() != null) {
+    		architect.setText(building.getArchitecte());
+		}
+    	else {
+			architect.setText(null);
+		}
+    	if (building.getPhotos().get(0) != null) {
+    		photo1.setText(building.getPhotos().get(0));
+		}
+    	else {
+			photo1.setText(null);
+		}
+    	if (building.getPhotos().size() >= 2) {
+    		photo2.setText(building.getPhotos().get(1));
+		}
+    	else {
+			photo2.setText(null);
+		}
+    	if (building.getPhotos().size() >= 3) {
+    		photo3.setText(building.getPhotos().get(2));
+		}
+    	else {
+			photo3.setText(null);
+		}
+    }
+    
     private void showAlertEmptyFields() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Champs vides");
@@ -224,6 +350,14 @@ public class EditBuildingUiController implements Initializable {
         alert.setTitle("Ajout réussi");
         alert.setHeaderText(null);
         alert.setContentText("Le bâtiment a bien été ajouté !");
+        alert.showAndWait();
+    }
+    
+    private void showAlertModSuccess() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Modification réussie");
+        alert.setHeaderText(null);
+        alert.setContentText("Le bâtiment a bien été modifié !");
         alert.showAndWait();
     }
 
