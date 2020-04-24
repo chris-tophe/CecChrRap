@@ -7,32 +7,31 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="34.0" layoutY="50.0" text="Nom" />
-      <Label layoutX="32.0" layoutY="77.0" text="N°" />
-      <Label layoutX="31.0" layoutY="100.0" text="Rue" />
-      <Label ellipsisString=".." layoutX="31.0" layoutY="123.0" pickOnBounds="false" prefHeight="16.0" prefWidth="45.0" text="CP" textOverrun="WORD_ELLIPSIS" />
-      <Label layoutX="31.0" layoutY="146.0" text="Ville" />
-      <Label layoutX="27.0" layoutY="173.0" text="GPS" />
-      <Label fx:id="descriptionLabel" layoutX="347.0" layoutY="50.0" text="Decription" />
-      <Label layoutX="349.0" layoutY="123.0" text="Categorie" />
-      <Label layoutX="266.0" layoutY="146.0" text="Année de construction" />
-      <Label layoutX="348.0" layoutY="173.0" text="Architecte" />
+      <Label layoutX="34.0" layoutY="27.0" text="Nom" AnchorPane.leftAnchor="34.0" />
+      <Label layoutX="34.0" layoutY="59.0" text="N°" AnchorPane.leftAnchor="34.0" />
+      <Label layoutX="34.0" layoutY="89.0" text="Rue" AnchorPane.leftAnchor="34.0" />
+      <Label ellipsisString=".." layoutX="34.0" layoutY="121.0" pickOnBounds="false" prefHeight="16.0" prefWidth="45.0" text="CP" textOverrun="WORD_ELLIPSIS" AnchorPane.leftAnchor="34.0" />
+      <Label layoutX="34.0" layoutY="153.0" text="Ville" AnchorPane.leftAnchor="34.0" />
+      <Label layoutX="34.0" layoutY="184.0" text="GPS" AnchorPane.leftAnchor="34.0" />
+      <Label fx:id="descriptionLabel" layoutX="347.0" layoutY="50.0" text="Description" />
+      <Label layoutX="360.0" layoutY="125.0" text="Catégorie" />
+      <Label layoutX="293.0" layoutY="156.0" text="Année de construction" />
+      <Label layoutX="358.0" layoutY="186.0" text="Architecte" />
       <TextArea fx:id="descriptionTextField" layoutX="422.0" layoutY="23.0" prefHeight="94.0" prefWidth="165.0" />
-      <TextField fx:id="nameTextField" layoutX="84.0" layoutY="45.0" />
-      <TextField fx:id="streetNumberTextField" layoutX="84.0" layoutY="72.0" />
-      <TextField fx:id="streetTextField" layoutX="84.0" layoutY="95.0" />
-      <TextField fx:id="zipCodeTextField" layoutX="84.0" layoutY="118.0" />
-      <TextField fx:id="cityNameTextField" layoutX="84.0" layoutY="141.0" />
-      <TextField fx:id="latitudeTextField" layoutX="84.0" layoutY="168.0" prefHeight="26.0" prefWidth="82.0" />
-      <TextField fx:id="longitudeTextField" layoutX="173.0" layoutY="168.0" prefHeight="26.0" prefWidth="82.0" />
-      <TextField fx:id="contructionYearTextField" layoutX="422.0" layoutY="141.0" />
-      <TextField fx:id="ArchitextTextField" layoutX="422.0" layoutY="168.0" />
-      <ComboBox fx:id="categoryComboBox" layoutX="422.0" layoutY="118.0" prefWidth="150.0" />
-      <Button layoutX="505.0" layoutY="344.0" mnemonicParsing="false" text="Valider" />
-      <AnchorPane fx:id="photoPane" layoutX="27.0" layoutY="244.0" prefHeight="113.0" prefWidth="417.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-radius: 3; -fx-border-color: #a0a0a0; -fx-background-color: #ffffff;" />
-      <Label layoutX="36.0" layoutY="218.0" text="Photos" />
+      <TextField fx:id="nameTextField" layoutX="84.0" layoutY="23.0" prefHeight="26.0" prefWidth="171.0" />
+      <TextField fx:id="streetNumberTextField" layoutX="84.0" layoutY="54.0" prefHeight="26.0" prefWidth="171.0" />
+      <TextField fx:id="streetTextField" layoutX="84.0" layoutY="85.0" prefHeight="26.0" prefWidth="171.0" />
+      <TextField fx:id="zipCodeTextField" layoutX="84.0" layoutY="116.0" prefHeight="26.0" prefWidth="171.0" />
+      <TextField fx:id="cityNameTextField" layoutX="84.0" layoutY="148.0" prefHeight="26.0" prefWidth="171.0" />
+      <TextField fx:id="latitudeTextField" layoutX="84.0" layoutY="179.0" prefHeight="26.0" prefWidth="82.0" />
+      <TextField fx:id="longitudeTextField" layoutX="173.0" layoutY="179.0" prefHeight="26.0" prefWidth="82.0" />
+      <TextField fx:id="contructionYearTextField" layoutX="422.0" layoutY="151.0" prefHeight="26.0" prefWidth="166.0" />
+      <TextField fx:id="ArchitextTextField" layoutX="422.0" layoutY="181.0" prefHeight="26.0" prefWidth="166.0" />
+      <ComboBox fx:id="categoryComboBox" layoutX="422.0" layoutY="121.0" prefHeight="26.0" prefWidth="166.0" />
+      <Button layoutX="532.0" layoutY="338.0" mnemonicParsing="false" text="Valider" />
+      <AnchorPane fx:id="photoPane" layoutX="34.0" layoutY="250.0" prefHeight="114.0" prefWidth="391.0" style="-fx-border-width: 1; -fx-border-style: solid; -fx-border-radius: 3; -fx-border-color: #a0a0a0; -fx-background-color: #ffffff;" />
+      <Label layoutX="35.0" layoutY="226.0" text="Photos" />
    </children>
 </AnchorPane>
