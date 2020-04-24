@@ -29,4 +29,4 @@ https://github.com/chris-tophe
 Raphael KOSCHIG
 https://github.com/RaphaelKoschig
 
-réalisé dans le cadre de la LP POO Serfa 2019/2020.
+Projet réalisé dans le cadre de la LP POO Serfa 2019/2020 Strasbourg
