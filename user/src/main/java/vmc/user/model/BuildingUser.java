@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class BuildingUser {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) // enlevé pour pouvoir forcer l'injection du numero d'id
 	private int idBuilding;
 	
 	private String name;
