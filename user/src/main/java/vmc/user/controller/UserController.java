@@ -61,13 +61,17 @@ public class UserController {
 	@PutMapping(value = "/user")
 	public User updateUser(@RequestBody User user) {
 		Optional<User> selectedUser = userDAO.findById(user.getIdUser());
+		if(selectedUser.isPresent()) {
+			selectedUser.get().getBuildings().clear();
+		/*for(BuildingUser b : selectedUser.get().getBuildings()) {
+				selectedUser.get().getBuildings().remove(b);
+				buildingUserDAO.deleteById(b.getId());
+			}*/
 		for(BuildingUser b : user.getBuildings()) {
-			Optional<BuildingUser> existingBuilding = buildingUserDAO.findById(b.getIdBuilding());
-			if (!existingBuilding.isPresent())
-				buildingUserDAO.save(b);
-		}
-		if(selectedUser.isPresent())
-			return userDAO.save(user);
+			buildingUserDAO.save(b);
+			}
+		return userDAO.save(user);
+		}	
 		return null;
 	}
 

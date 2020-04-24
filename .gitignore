@@ -7,6 +7,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 /.metadata/
 /city/.mvn/*
+db.trace.db
 
 HELP.md
 target/
@@ -131,4 +132,6 @@ nb-configuration.xml
 ##############################
 .DS_Store
 /city/.attach_pid24996
+/building/src/main/resources/db.trace.db
+/user/src/main/resources/db.trace.db
 *.db

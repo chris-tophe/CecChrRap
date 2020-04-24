@@ -5,13 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class BuildingUser {
 
-	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY) // enlevé pour pouvoir forcer l'injection du numero d'id
+	
 	private int idBuilding;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
+	private int id;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String name;
 	
 	private String photo;
