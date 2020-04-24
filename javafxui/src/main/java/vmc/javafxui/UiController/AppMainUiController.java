@@ -40,7 +40,7 @@ import vmc.javafxui.proxies.UserProxy;
 @Controller
 public class AppMainUiController implements Initializable {
 
-	Resource buildingCityUi, cityUi, buildingUserUi, buildingDetailsUi , addModBuilginScreen;
+	Resource buildingCityUi, cityUi, buildingUserUi, buildingDetailsUi , addModCityScreen , addModBuilginScreen;
 
 	private final ApplicationContext appContext;
 
@@ -75,12 +75,14 @@ public class AppMainUiController implements Initializable {
 			@Value("classpath:/buildingDetailsUi.fxml") Resource buildingDetailsUi,
 			@Value("classpath:/buildingUserUi.fxml") Resource buildingUserUi,
 			@Value("classpath:/addModBuilginScreen.fxml") Resource addModBuilginScreen,
+			@Value("classpath:/addModCityScreen.fxml") Resource addModCityScreen,
 			ApplicationContext appContext) {
 		this.buildingUserUi = buildingUserUi;
 		this.buildingCityUi = buildingCityUi;
 		this.cityUi = cityUi;
 		this.buildingDetailsUi = buildingDetailsUi;
 		this.addModBuilginScreen = addModBuilginScreen;
+		this.addModCityScreen = addModCityScreen;
 		this.appContext = appContext;
 	}
 
@@ -195,7 +197,6 @@ public class AppMainUiController implements Initializable {
 	// add mod Building Section
 	
 	public void displayBuildingWindow(Event event){
-		
 		try {
 			FXMLLoader addModBuilginScreenLoader = new FXMLLoader(this.addModBuilginScreen.getURL());
 			addModBuilginScreenLoader.setControllerFactory(appContext::getBean);
@@ -210,9 +211,25 @@ public class AppMainUiController implements Initializable {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		
-		
-		
+	}
+	
+	// add mod City Section
+	
+	public void displayCityWindow( Event event) {
+		try {
+			FXMLLoader addModCityScreenLoader = new FXMLLoader(this.addModCityScreen.getURL());
+			addModCityScreenLoader.setControllerFactory(appContext::getBean);
+			Parent addModCityScreenScene = addModCityScreenLoader.load();
+			//addModCityScreenController = addModCityScreenLoader.getController();
+			//addModCityScreenController.setMainApp(this);
+			Stage addModStage = new Stage();
+			Scene addModScene = new Scene(addModCityScreenScene);
+			addModStage.setScene(addModScene);
+			addModStage.setTitle("Ville");
+			addModStage.show();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
