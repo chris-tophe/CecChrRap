@@ -31,7 +31,7 @@ public class BuildingDetailsUiController implements Initializable {
 		BuildingBean building = main.getBuildingDetails();
 		buildingName.setText(building.getName());
 		buildingAddress.setText(building.getStreetNumber() + " " + building.getStreetName() + "\n"  + building.getCityAddress());
-		String buildingPhotoUrl = building.getPhotos().get(1);
+		String buildingPhotoUrl = building.getPhotos().get(0);
 		Image buildingPhoto = new Image(buildingPhotoUrl);
 		buildingPhotoView.setImage(buildingPhoto);
 		
