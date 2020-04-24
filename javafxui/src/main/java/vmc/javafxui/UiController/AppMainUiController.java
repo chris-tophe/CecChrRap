@@ -49,6 +49,7 @@ public class AppMainUiController implements Initializable {
 	private BuildingUserUiController buildingUserUiController = new BuildingUserUiController();
 	private BuildingDetailsUiController buildingDetailsUiController = new BuildingDetailsUiController();
 	private AddModCityScreenController addModCityScreenController = new AddModCityScreenController();
+	private EditBuildingUiController addModBuilginScreenController = new EditBuildingUiController();
 	
 	private UserBean user = new UserBean();
 
@@ -197,14 +198,13 @@ public class AppMainUiController implements Initializable {
 	}
 	
 	// add mod Building Section
-	
 	public void displayBuildingWindow(Event event){
 		try {
 			FXMLLoader addModBuilginScreenLoader = new FXMLLoader(this.addModBuilginScreen.getURL());
 			addModBuilginScreenLoader.setControllerFactory(appContext::getBean);
 			Parent addModBuilginScreenScene = addModBuilginScreenLoader.load();
-			//addModBuilginScreenController = addModBuilginScreenLoader.getController();
-			//addModBuilginScreenController.setMainApp(this);
+			addModBuilginScreenController = addModBuilginScreenLoader.getController();
+			addModBuilginScreenController.setMainApp(this);
 			Stage addModStage = new Stage();
 			Scene addModScene = new Scene(addModBuilginScreenScene);
 			addModStage.setScene(addModScene);
@@ -216,7 +216,6 @@ public class AppMainUiController implements Initializable {
 	}
 	
 	// add mod City Section
-	
 	public void displayCityWindow( Event event) {
 		try {
 			FXMLLoader addModCityScreenLoader = new FXMLLoader(this.addModCityScreen.getURL());
