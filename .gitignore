@@ -131,3 +131,4 @@ nb-configuration.xml
 ##############################
 .DS_Store
 /city/.attach_pid24996
+*.db
