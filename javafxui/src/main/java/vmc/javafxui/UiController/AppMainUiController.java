@@ -17,11 +17,16 @@ import com.sun.javafx.collections.ArrayListenerHelper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import vmc.javafxui.beans.BuildingBean;
 import vmc.javafxui.beans.BuildingCityBean;
 import vmc.javafxui.beans.BuildingUserBean;
@@ -35,7 +40,7 @@ import vmc.javafxui.proxies.UserProxy;
 @Controller
 public class AppMainUiController implements Initializable {
 
-	Resource buildingCityUi, cityUi, buildingUserUi, buildingDetailsUi;
+	Resource buildingCityUi, cityUi, buildingUserUi, buildingDetailsUi , addModBuilginScreen;
 
 	private final ApplicationContext appContext;
 
@@ -48,6 +53,9 @@ public class AppMainUiController implements Initializable {
 
 	@FXML
 	AnchorPane buildingCityViewPane, cityViewPane, buildingUserViewPane ,buildingDetailsPane;
+	
+	@FXML
+	Button addBuildingButton, modBuildingButton;
 
 	@Autowired
 	CityProxy cities;
@@ -66,11 +74,13 @@ public class AppMainUiController implements Initializable {
 			@Value("classpath:/cityUi.fxml") Resource cityUi,
 			@Value("classpath:/buildingDetailsUi.fxml") Resource buildingDetailsUi,
 			@Value("classpath:/buildingUserUi.fxml") Resource buildingUserUi,
+			@Value("classpath:/addModBuilginScreen.fxml") Resource addModBuilginScreen,
 			ApplicationContext appContext) {
 		this.buildingUserUi = buildingUserUi;
 		this.buildingCityUi = buildingCityUi;
 		this.cityUi = cityUi;
 		this.buildingDetailsUi = buildingDetailsUi;
+		this.addModBuilginScreen = addModBuilginScreen;
 		this.appContext = appContext;
 	}
 
@@ -180,6 +190,29 @@ public class AppMainUiController implements Initializable {
 	public void setSelectBuilding(int idBuilding) {
 		this.buildingDetails = buildings.oneBuilding(idBuilding);
 		buildingDetailsUiController.refresh();
+	}
+	
+	// add mod Building Section
+	
+	public void displayBuildingWindow(Event event){
+		
+		try {
+			FXMLLoader addModBuilginScreenLoader = new FXMLLoader(this.addModBuilginScreen.getURL());
+			addModBuilginScreenLoader.setControllerFactory(appContext::getBean);
+			Parent addModBuilginScreenScene = addModBuilginScreenLoader.load();
+			//addModBuilginScreenController = addModBuilginScreenLoader.getController();
+			//addModBuilginScreenController.setMainApp(this);
+			Stage addModStage = new Stage();
+			Scene addModScene = new Scene(addModBuilginScreenScene);
+			addModStage.setScene(addModScene);
+			addModStage.setTitle("Batiment");
+			addModStage.show();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+		
 	}
 
 }
