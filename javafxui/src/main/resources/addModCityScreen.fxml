@@ -5,10 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.AddModCityScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vmc.javafxui.UiController.AddModCityScreenController">
    <children>
-      <Button fx:id="validateButton" layoutX="216.0" layoutY="160.0" mnemonicParsing="false" onMouseClicked="#validateButtonClick" text="Valider" />
-      <Label layoutX="44.0" layoutY="59.0" text="Nom" />
-      <TextField fx:id="nameTextField" layoutX="83.0" layoutY="54.0" />
+      <Button fx:id="validateButton" layoutX="225.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#validateButtonClick" text="Valider" />
+      <Label layoutX="76.0" layoutY="60.0" text="Nom de la ville" />
+      <TextField fx:id="nameTextField" layoutX="76.0" layoutY="87.0" />
    </children>
 </AnchorPane>
