@@ -134,3 +134,4 @@ nb-configuration.xml
 /city/.attach_pid24996
 /building/src/main/resources/db.trace.db
 /user/src/main/resources/db.trace.db
+*.db

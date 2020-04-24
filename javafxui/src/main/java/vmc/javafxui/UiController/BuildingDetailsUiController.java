@@ -22,7 +22,7 @@ public class BuildingDetailsUiController implements Initializable {
 	BuildingBean building;
 	
 	@FXML
-	private Label buildingName, buildingAddress;
+	private Label buildingName, buildingAddress, buildingDescription;
 	
 	@FXML
 	Button addBuildingUserButton;
@@ -45,6 +45,8 @@ public class BuildingDetailsUiController implements Initializable {
 		Image buildingPhoto = new Image(buildingPhotoUrl);
 		buildingPhotoView.setImage(buildingPhoto);
 		
+		buildingDescription.setText(building.getDescription());
+		int a = 1;
 	}
 	
 	public void setMainApp(AppMainUiController mainApp) {
