@@ -197,9 +197,10 @@ public class AppMainUiController implements Initializable {
 		buildingDetailsUiController.refresh();
 	}
 	
-	// add mod Building Section
+	// add create Building Section
 	public void displayBuildingWindow(Event event){
 		try {
+
 			FXMLLoader addModBuilginScreenLoader = new FXMLLoader(this.addModBuilginScreen.getURL());
 			addModBuilginScreenLoader.setControllerFactory(appContext::getBean);
 			Parent addModBuilginScreenScene = addModBuilginScreenLoader.load();
@@ -227,6 +228,26 @@ public class AppMainUiController implements Initializable {
 			Scene addModScene = new Scene(addModCityScreenScene);
 			addModStage.setScene(addModScene);
 			addModStage.setTitle("Ville");
+			addModStage.show();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void displayEditBuildingWindow(Event event){
+		try {
+			FXMLLoader addModBuilginScreenLoader = new FXMLLoader(this.addModBuilginScreen.getURL());
+			addModBuilginScreenLoader.setControllerFactory(appContext::getBean);
+			Parent addModBuilginScreenScene = addModBuilginScreenLoader.load();
+			addModBuilginScreenController = addModBuilginScreenLoader.getController();
+			addModBuilginScreenController.setMainApp(this);
+			BuildingBean buildingSelected = buildingDetailsUiController.building;
+			System.out.println(buildingSelected);
+			addModBuilginScreenController.setBuildingSelected(buildingSelected);
+			Stage addModStage = new Stage();
+			Scene addModScene = new Scene(addModBuilginScreenScene);
+			addModStage.setScene(addModScene);
+			addModStage.setTitle("Batiment");
 			addModStage.show();
 		} catch (IOException e) {
 			throw new RuntimeException(e);

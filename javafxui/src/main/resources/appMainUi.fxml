@@ -70,7 +70,7 @@
                                  <children>
                                     <Label text="Détails" />
                                     <Separator orientation="VERTICAL" prefHeight="200.0" />
-                                    <Button fx:id="modBuildingButton" mnemonicParsing="false" onMouseClicked="#displayBuildingWindow" text="Modifier">
+                                    <Button fx:id="modBuildingButton" mnemonicParsing="false" onMouseClicked="#displayEditBuildingWindow" text="Modifier">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
