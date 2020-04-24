@@ -35,7 +35,12 @@ public class BuildingDetailsUiController implements Initializable {
 	public void refresh() {
 		this.building = main.getBuildingDetails();
 		buildingName.setText(building.getName());
-		buildingAddress.setText(building.getStreetNumber() + " " + building.getStreetName() + "\n"  + building.getCityAddress());
+		
+		String adress = building.getStreetNumber() + " " + building.getStreetName() + "\n"  + building.getZipCode() + " " + building.getCityAddress();
+		String adressClean = adress.trim().replace(" +", " ");
+				
+		buildingAddress.setText(adressClean);
+		
 		String buildingPhotoUrl = building.getPhotos().get(0);
 		Image buildingPhoto = new Image(buildingPhotoUrl);
 		buildingPhotoView.setImage(buildingPhoto);
