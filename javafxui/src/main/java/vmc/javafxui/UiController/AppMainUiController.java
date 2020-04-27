@@ -260,10 +260,15 @@ public class AppMainUiController implements Initializable {
 		cityUiController.refresh();
 	}
 	
-	public void refreshAfterSaveBuilding(CityBean selectedCity, int selectedBuildingId) {
+	public void refreshAfterSaveBuilding(CityBean selectedCity, int selectedBuildingId, UserBean user) {
 		this.setSelectCity(selectedCity);
 		this.cityUiController.refresh();
 		this.cityUiController.CityListView.getSelectionModel().select(selectedCity);
 		this.setSelectBuilding(selectedBuildingId);
+		this.setUser(userProxy.getOneUser(user.getIdUser()));
+	}
+	
+	public UserBean getActualUser() {
+		return this.user;
 	}
 }

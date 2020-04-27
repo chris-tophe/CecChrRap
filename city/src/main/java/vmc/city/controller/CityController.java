@@ -1,5 +1,6 @@
 package vmc.city.controller;
 
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import vmc.city.dao.BuildingCityDao;
 import vmc.city.dao.CityDao;
@@ -31,6 +33,11 @@ public class CityController {
 	@GetMapping(value = "/city")
 	public List<City> getCities() {
 		return cities.findAll();
+	}
+	
+	@GetMapping(value = "/building")
+	public List<BuildingCity> listBuildingsCity() {
+		return buildings.findAll();
 	}
 
 	@GetMapping(value = "/city/{id}")
@@ -69,6 +76,12 @@ public class CityController {
 		}
 		return null;
 	}
+	
+	@GetMapping(value = "/building/{id}")
+	public Optional<BuildingCity> oneBuilding(@PathVariable int id) {
+		Optional<BuildingCity> buildingCity = buildings.findById(id);
+		return buildingCity;
+	}
 
 	@PostMapping(value = "/city")
 	public City postCity(@RequestBody City city) {
@@ -82,6 +95,22 @@ public class CityController {
 		c.get().addBuilding(building);
 		cities.save(c.get());
 		return building;
+	}
+	
+	@PostMapping(value = "/building")
+	public ResponseEntity<BuildingCity> addBuildingCity(@RequestBody BuildingCity buildingCity) {
+		BuildingCity newBuildingCity = buildings.save(buildingCity);
+		
+    	if(newBuildingCity == null)
+    		return ResponseEntity.noContent().build();
+    	
+    	URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newBuildingCity.getIdBuildingCity())
+                .toUri();
+
+        return ResponseEntity.created(location).body(newBuildingCity);
 	}
 
 	@PutMapping(value = "/city")
@@ -101,6 +130,16 @@ public class CityController {
 		}
 		return null;
 	}
+	
+	@PutMapping(value = "/building")
+	public BuildingCity updateBuildingCity (@RequestBody BuildingCity buildingCity) {
+		Optional<BuildingCity> selectedBuildingCity = buildings.findById(buildingCity.getIdBuildingCity());
+		
+		if (selectedBuildingCity.isPresent()) {
+			return buildings.save(buildingCity);
+		}
+		return null;
+	}
 
 	@DeleteMapping(value = "/city/{id}")
 	public ResponseEntity<City> deleteCity(@PathVariable int id) {
@@ -115,6 +154,19 @@ public class CityController {
 		cities.findById(id).get().getBuildings().removeIf(b -> (b.getIdBuildingCity() == buildingId));
 		buildings.deleteById(buildingId);
 		return ResponseEntity.ok().build();
+	}
+	
+	@DeleteMapping(value = "/building/{id}")
+	public void removeBuildingCity(@PathVariable int id) {
+		for (City city : cities.findAll()) {
+			for (BuildingCity buildingCity : city.getBuildings()) {
+				if (buildingCity.getIdBuildingCity() == id) {
+					city.removeBuilding(buildings.findById(id).get());
+					cities.save(city);
+				}
+			}
+		}
+		buildings.deleteById(id);
 	}
 
 }

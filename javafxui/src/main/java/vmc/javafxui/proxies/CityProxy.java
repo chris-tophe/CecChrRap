@@ -20,6 +20,9 @@ public interface CityProxy {
 	@GetMapping(value = "/city")
 	public List<CityBean> getCities();
 	
+	@GetMapping(value = "/building")
+	public List<BuildingCityBean> getAllBuildingCity();
+	
 	@GetMapping(value = "/city/{id}")
 	public CityBean getCityById(@PathVariable("id") int id);
 	
@@ -33,11 +36,17 @@ public interface CityProxy {
 	public BuildingCityBean getBuildingByPosition
 			(@PathVariable("id") int id , @PathVariable("building") int building);
 	
+	@GetMapping(value = "/building/{id}")
+	public BuildingCityBean getOneBuildingCityById(@PathVariable("id") int id);
+	
 	@PostMapping(value = "/city")
 	public CityBean createCity(@RequestBody CityBean city);
 	
 	@PostMapping(value = "/city/{id}/building")
 	public BuildingCityBean addBuildingToCity(@RequestBody BuildingCityBean building, @PathVariable("id") int id);
+	
+	@PostMapping(value = "/building")
+	public BuildingCityBean addBuildingCity(@RequestBody BuildingCityBean buildingCity);
 	
 	@PutMapping(value = "/city")
 	public CityBean updateCity(@RequestBody CityBean city);
@@ -45,11 +54,17 @@ public interface CityProxy {
 	@PutMapping(value = "/city/{id}/building")
 	public BuildingCityBean updateBuildingInCityList(@RequestBody BuildingCityBean building, @PathVariable("id") int id);
 	
+	@PutMapping(value = "/building")
+	public BuildingCityBean updateBuildingCity(@RequestBody BuildingCityBean buildingCity);
+	
 	@DeleteMapping(value = "/city/{id}")
 	public ResponseEntity<CityBean> deleteCity(@PathVariable("id") int id);
 	
 	@DeleteMapping(value = "/city/{id}/building/{buildingId}")
 	public ResponseEntity<BuildingCityBean> removeBuildingFromCity
 			(@PathVariable("id") int id , @PathVariable("buildingId") int buildingId);
+	
+	@DeleteMapping(value = "/building/{id}")
+	public void removeBuildingCity(@PathVariable("id") int id);
 
 }

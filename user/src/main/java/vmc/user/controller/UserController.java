@@ -34,6 +34,11 @@ public class UserController {
 	public List<User> listUsers() {
 		return userDAO.findAll();
 	}
+	
+	@GetMapping(value = "/building")
+	public List<BuildingUser> listBuildingsUser() {
+		return buildingUserDAO.findAll();
+	}
 
 	@GetMapping(value = "/user/{id}")
 	public Optional<User> oneUser(@PathVariable int id) {
@@ -41,6 +46,12 @@ public class UserController {
 		if (user == null)
 			throw new UserNotFoundException("L'utilisateur avec l'id " + id + " est introuvable.");
 		return user;
+	}
+	
+	@GetMapping(value = "/building/{id}")
+	public Optional<BuildingUser> oneBuilding(@PathVariable int id) {
+		Optional<BuildingUser> buildingUser = buildingUserDAO.findById(id);
+		return buildingUser;
 	}
 
 	@PostMapping(value = "/user")
@@ -56,6 +67,22 @@ public class UserController {
 				.toUri();
 
 		return ResponseEntity.created(location).build();
+	}
+	
+	@PostMapping(value = "/building")
+	public ResponseEntity<BuildingUser> addBuildingUser(@RequestBody BuildingUser buildingUser) {
+		BuildingUser newBuildingUser = buildingUserDAO.save(buildingUser);
+		
+    	if(newBuildingUser == null)
+    		return ResponseEntity.noContent().build();
+    	
+    	URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newBuildingUser.getIdBuilding())
+                .toUri();
+
+        return ResponseEntity.created(location).body(newBuildingUser);
 	}
 
 	@PutMapping(value = "/user")
@@ -74,10 +101,33 @@ public class UserController {
 		}	
 		return null;
 	}
+	
+	@PutMapping(value = "/building")
+	public BuildingUser updateBuildingUser (@RequestBody BuildingUser buildingUser) {
+		Optional<BuildingUser> selectedBuildingUser = buildingUserDAO.findById(buildingUser.getIdBuilding());
+		
+		if (selectedBuildingUser.isPresent()) {
+			return buildingUserDAO.save(buildingUser);
+		}
+		return null;
+	}
 
 	@DeleteMapping(value = "/user/{id}")
 	public void removeUser(@PathVariable int id) {
 		userDAO.deleteById(id);
+	}
+	
+	@DeleteMapping(value = "/building/{id}")
+	public void removeBuildingUser(@PathVariable int id) {
+		for (User user : userDAO.findAll()) {
+			for (BuildingUser buildingUser : user.getBuildings()) {
+				if (buildingUser.getIdBuilding() == id) {
+					user.removeBuilding(buildingUserDAO.findById(id).get());
+					userDAO.save(user);
+				}
+			}
+		}
+		buildingUserDAO.deleteById(id);
 	}
 
 }

@@ -22,9 +22,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import vmc.javafxui.beans.BuildingBean;
 import vmc.javafxui.beans.BuildingCityBean;
+import vmc.javafxui.beans.BuildingUserBean;
 import vmc.javafxui.beans.CityBean;
+import vmc.javafxui.beans.UserBean;
 import vmc.javafxui.proxies.BuildingProxy;
 import vmc.javafxui.proxies.CityProxy;
+import vmc.javafxui.proxies.UserProxy;
 
 @Component
 @Controller
@@ -32,12 +35,16 @@ public class EditBuildingUiController implements Initializable {
 	
 	AppMainUiController main;
 	BuildingBean buildingSaved;
+	UserBean user;
 	
 	@Autowired
 	BuildingProxy buildingProxy;
 	
 	@Autowired
 	CityProxy cityProxy;
+	
+	@Autowired
+	UserProxy userProxy;
 	
 	@FXML
 	TextField 
@@ -57,6 +64,7 @@ public class EditBuildingUiController implements Initializable {
 	
 	public void setMainApp(AppMainUiController mainApp) {
         this.main = mainApp;
+        this.user = mainApp.getActualUser();
     }
 	
 	// Pré-remplie les champs s'il s'agit d'une modification
@@ -131,11 +139,13 @@ public class EditBuildingUiController implements Initializable {
 				BuildingCityBean newBuildingCityBean = new BuildingCityBean(BuildingSavedInAPI);
 				
 				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
-				cityProxy.addBuildingToCity(newBuildingCityBean, selectedCity.getIdCity());
+				cityProxy.addBuildingCity(newBuildingCityBean);
+				selectedCity.addBuilding(newBuildingCityBean);
+				cityProxy.updateCity(selectedCity);
 				
 				Stage stage = (Stage) validateButton.getScene().getWindow();
 				stage.close();
-				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding());
+				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding(), user);
 				this.showAlertSuccess();
 			}
 			else {
@@ -156,33 +166,47 @@ public class EditBuildingUiController implements Initializable {
 				BuildingBean BuildingSavedInAPI = buildingProxy.updateBuilding(buildingSaved);
 				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
 				
+				// Vérifie si le bâtiment est déjà dans la liste de la ville sélectionnée
 				BuildingCityBean buildingCityBean = null;
-				for (BuildingCityBean buildingCityBeanSearched : cityProxy.getBuildingByCityId(selectedCity.getIdCity())) {
-					if (buildingCityBeanSearched.getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
-						buildingCityBean = buildingCityBeanSearched;
+				for (BuildingCityBean buildingCityBeanChecked : selectedCity.getBuildings()) {
+					if (buildingCityBeanChecked.getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
+						buildingCityBean = buildingCityBeanChecked;
 					}
 				}
 				
+				// S'il n'y est pas, cherche dans les autres villes et le retire de la liste
 				if (buildingCityBean == null) {
-					for (CityBean cityBean : cityProxy.getCities()) {
-						for (BuildingCityBean buildingCitySeached : cityBean.getBuildings()) {
-							if (buildingCitySeached.getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
-								cityProxy.removeBuildingFromCity(cityBean.getIdCity(), buildingCitySeached.getIdBuildingCity());
+					for (CityBean cityChecked : cityProxy.getCities()) {
+						List<BuildingCityBean> listChecked = cityChecked.getBuildings();
+						for (int incr = 0; incr < listChecked.size(); incr++ ) {
+							if (listChecked.get(incr).getIdBuildingCity() == BuildingSavedInAPI.getIdBuilding()) {
+								listChecked.remove(listChecked.get(incr));
+								cityProxy.updateCity(cityChecked);
 							}
 						}
 					}
+					
+					// Puis l'ajoute à la liste de la ville sélectionnée
 					buildingCityBean = new BuildingCityBean(BuildingSavedInAPI);
-					cityProxy.addBuildingToCity(buildingCityBean, selectedCity.getIdCity());
+					cityProxy.updateBuildingCity(buildingCityBean);
+					selectedCity.addBuilding(buildingCityBean);
+					cityProxy.updateCity(selectedCity);
 				}
+				
+				// Sinon le met simplement à jour dans la liste
 				else {
 					buildingCityBean.setName(nameTextField.getText());
 					buildingCityBean.setPhotoUrl(photo1TextField.getText());
-					cityProxy.updateBuildingInCityList(buildingCityBean, selectedCity.getIdCity());
+					cityProxy.updateBuildingCity(buildingCityBean);
 				}
+				
+				// Met le bâtiment à jour dans les listes des utilisateurs
+				BuildingUserBean checkedBuildingUser = new BuildingUserBean(BuildingSavedInAPI);
+				userProxy.updateBuildingUser(checkedBuildingUser);
 				
 				Stage stage = (Stage) validateButton.getScene().getWindow();
 				stage.close();
-				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding());
+				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding(), user);
 				this.showAlertModSuccess();
 			}
 			else {
