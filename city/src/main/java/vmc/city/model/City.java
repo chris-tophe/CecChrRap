@@ -2,6 +2,7 @@ package vmc.city.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -56,8 +57,8 @@ public class City {
 		this.buildings.add(building);
 	}
 	
-	public void removeBuilding (BuildingCity building) {
-		this.buildings.remove(building);
+	public void removeBuilding (BuildingCity buildingCity) {
+		this.buildings.remove(buildingCity);
 	}
 	
 	@Override

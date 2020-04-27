@@ -2,6 +2,7 @@ package vmc.user.model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -80,9 +81,9 @@ public class User {
 		return this;
 	}
 	
-	public User removeBuilding(BuildingUser building) {
-		if (this.buildings.contains(building)) {
-			this.buildings.remove(building);
+	public User removeBuilding(BuildingUser buildingUser) {
+		if (this.buildings.contains(buildingUser)) {
+			this.buildings.remove(buildingUser);
 		}
 		return this;
 	}

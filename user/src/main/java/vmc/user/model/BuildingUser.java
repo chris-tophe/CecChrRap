@@ -10,21 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class BuildingUser {
 
-	
-	private int idBuilding;
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
-	private int id;
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idBuilding;
 
 	private String name;
 	
