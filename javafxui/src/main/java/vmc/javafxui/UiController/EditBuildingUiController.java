@@ -123,11 +123,11 @@ public class EditBuildingUiController implements Initializable {
 	public void editBuildingClick(Event e) throws Exception {
 		
 		// S'il s'agit d'une création de bâtiment
-		if (buildingSaved == null) {
-			buildingSaved = new BuildingBean();
+		if (this.buildingSaved == null) {
+			BuildingBean newBuildingBean = new BuildingBean();
 			
 			if (this.fillBuildingFields(
-					buildingSaved, descriptionTextField,
+					newBuildingBean, descriptionTextField,
 					nameTextField, streetNumberTextField, streetTextField, 
 					zipCodeTextField, cityNameTextField, latitudeTextField, 
 					longitudeTextField, contructionYearTextField, ArchitextTextField, 
@@ -135,7 +135,7 @@ public class EditBuildingUiController implements Initializable {
 					)
 				&& !linkedCity.getSelectionModel().isEmpty()) 
 			{
-				BuildingBean BuildingSavedInAPI = buildingProxy.addBuilding(buildingSaved);
+				BuildingBean BuildingSavedInAPI = buildingProxy.addBuilding(newBuildingBean);
 				BuildingCityBean newBuildingCityBean = new BuildingCityBean(BuildingSavedInAPI);
 				
 				CityBean selectedCity = linkedCity.getSelectionModel().getSelectedItem();
@@ -208,6 +208,7 @@ public class EditBuildingUiController implements Initializable {
 				stage.close();
 				this.main.refreshAfterSaveBuilding(selectedCity, BuildingSavedInAPI.getIdBuilding(), user);
 				this.showAlertModSuccess();
+				this.buildingSaved = null;
 			}
 			else {
 				this.showAlertEmptyFields();
