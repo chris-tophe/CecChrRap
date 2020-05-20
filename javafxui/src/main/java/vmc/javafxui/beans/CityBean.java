@@ -1,15 +1,11 @@
 package vmc.javafxui.beans;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class CityBean {
 	
@@ -35,10 +31,12 @@ public class CityBean {
 	public int getIdCity() {
 		return idCity.get();
 	}
+	
 	public void setIdCity(int idCity) {
 		this.idCity.set(idCity);
 	}
-	public final  SimpleIntegerProperty idCityProperty() {
+	
+	public final SimpleIntegerProperty idCityProperty() {
 		return idCity;
 	}
 	
@@ -46,9 +44,11 @@ public class CityBean {
 	public String getName() {
 		return name.get();
 	}
+	
 	public void setName(String name) {
 		this.name.set(name);
 	}
+	
 	public final SimpleStringProperty nameProperty() {
 		return name;
 	}
@@ -57,15 +57,19 @@ public class CityBean {
 	public List<BuildingCityBean> getBuildings() {
 		return buildings.get();
 	}
+	
 	public void setBuildings(List<BuildingCityBean> buildings) {
 		this.buildings.set(FXCollections.observableList(buildings));
 	}
+	
 	public void addBuilding (BuildingCityBean building) {
 		this.buildings.add(building);
 	}
+	
 	public void removeBuilding (BuildingCityBean building) {
 		this.buildings.remove(building);
 	}
+	
 	public final SimpleListProperty<BuildingCityBean> buildingsProperty(){
 		return buildings;
 	}

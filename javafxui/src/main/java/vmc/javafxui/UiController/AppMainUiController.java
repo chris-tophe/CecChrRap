@@ -13,8 +13,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import com.sun.javafx.collections.ArrayListenerHelper;
-
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,7 +67,7 @@ public class AppMainUiController implements Initializable {
 	@Autowired
 	private BuildingProxy buildings;
 
-	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
+	private SimpleListProperty<BuildingCityBean> buildingCityList = new SimpleListProperty<BuildingCityBean>(FXCollections.observableList(new LinkedList<BuildingCityBean>()));
 	private SimpleListProperty<CityBean> cityList = new SimpleListProperty<CityBean>(FXCollections.observableList(new LinkedList<CityBean>()));
 	private BuildingBean buildingDetails = new BuildingBean();
 
@@ -176,7 +174,7 @@ public class AppMainUiController implements Initializable {
 	}
 
 	// Retourne la liste des bâtiments d'une ville
-	public List<BuildingCityBean> getBuildingCityList() {
+	public ObservableList<BuildingCityBean> getBuildingCityList() {
 		return buildingCityList;
 	}
 
@@ -188,8 +186,9 @@ public class AppMainUiController implements Initializable {
 
 	// Détermine la liste des bâtiments selon la ville sélectionnée
 	public void setSelectCity(CityBean city) {
-		this.buildingCityList = cities.getBuildingByCityId(city.getIdCity());
-		buildingCityUiController.refresh();
+		this.buildingCityList.set(FXCollections.observableList(cities.getBuildingByCityId(city.getIdCity())));
+		//this.buildingCityList = cities.getBuildingByCityId(city.getIdCity());
+		//buildingCityUiController.refresh();
 	}
 
 	// Détermine le bâtiment sélectionné

@@ -1,54 +1,75 @@
 package vmc.javafxui.beans;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class BuildingCityBean {
 
-	private int idBuildingCity;
+	private SimpleIntegerProperty idBuildingCity;
 	
-	private String name;
+	private SimpleStringProperty name;
 
-	private String photoUrl;
+	private SimpleStringProperty photoUrl;
+	
+	
 	
 	public BuildingCityBean() {
-		
+		this(0,"","");
 	}
 	
 	public BuildingCityBean(int idBuildingCity, String name, String photoUrl) {
-		this.idBuildingCity = idBuildingCity;
-		this.name = name;
-		this.photoUrl = photoUrl;
+		this.idBuildingCity = new SimpleIntegerProperty(idBuildingCity);
+		this.name = new SimpleStringProperty(name);
+		this.photoUrl = new SimpleStringProperty(photoUrl);
 	}
 	
+	
 	public BuildingCityBean(BuildingBean buildingBean) {
-		this.idBuildingCity = buildingBean.getIdBuilding();
-		this.name = buildingBean.getName();
-		this.photoUrl = buildingBean.getPhotos().get(0);
+		this.idBuildingCity.set(buildingBean.getIdBuilding());
+		this.name.set(buildingBean.getName());
+		this.photoUrl.set(buildingBean.getPhotos().get(0));
 	}
+	
+	
 
 	public int getIdBuildingCity() {
+		return idBuildingCity.get();
+	}
+	
+	public void setIdBuildingCity(int idBuildingCity) {
+		this.idBuildingCity.set(idBuildingCity);
+	}
+
+	public final SimpleIntegerProperty idBuildingCityProperty() {
 		return idBuildingCity;
 	}
-
-	public void setIdBuildingCity(int idBuildingCity) {
-		this.idBuildingCity = idBuildingCity;
-	}
-
+	
+	
 	public String getName() {
+		return name.get();
+	}
+	
+	public void setName(String name) {
+		this.name.set(name);
+	}
+	
+	public final SimpleStringProperty nameProperty() {
 		return name;
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	
+	public String getPhotoUrl() {
+		return photoUrl.get();
+	}
+	
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl.set(photoUrl);
 	}
 
-	public String getPhotoUrl() {
+	public final SimpleStringProperty photoUrlProperty() {
 		return photoUrl;
 	}
-
-	public void setPhotoUrl(String photoUrl) {
-		this.photoUrl = photoUrl;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "BuildingCityBean [idBuildingCity=" + idBuildingCity + ", name=" + name + ", photoUrl=" + photoUrl + "]";

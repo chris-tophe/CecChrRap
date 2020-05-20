@@ -28,20 +28,15 @@ public class BuildingCityUiController implements Initializable {
 	
 	public void setMainApp(AppMainUiController mainApp) {
         this.main = mainApp;
+        BuildingCityListView.setItems(main.getBuildingCityList());
+        
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Rend les bâtiments de la liste sélectionnables
 		BuildingCityListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-	}
 	
-	public void refresh() {
-		
-		BuildingCityListView.getItems().clear();
-		BuildingCityListView.getItems().addAll(main.getBuildingCityList());
-		
-		// Met à jour les cellules pour n'afficher que le nom et la photo des bâtiments
 		BuildingCityListView.setCellFactory(BuildingCityListView -> new ListCell<BuildingCityBean>() {
 			
 			ImageView imageView = new ImageView();
