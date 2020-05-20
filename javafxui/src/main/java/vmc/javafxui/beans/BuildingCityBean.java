@@ -25,9 +25,15 @@ public class BuildingCityBean {
 	
 	
 	public BuildingCityBean(BuildingBean buildingBean) {
-		this.idBuildingCity.set(buildingBean.getIdBuilding());
-		this.name.set(buildingBean.getName());
-		this.photoUrl.set(buildingBean.getPhotos().get(0));
+		//this(buildingBean.getIdBuilding(),buildingBean.getName(),buildingBean.getPhotos().get(0));
+		
+		this.idBuildingCity = new SimpleIntegerProperty(buildingBean.getIdBuilding());
+		this.name = new SimpleStringProperty(buildingBean.getName());
+		this.photoUrl = new SimpleStringProperty(buildingBean.getPhotos().get(0));
+		
+		//this.idBuildingCity.set(buildingBean.getIdBuilding());
+		//this.name.set(buildingBean.getName());
+		//this.photoUrl.set(buildingBean.getPhotos().get(0));
 	}
 	
 	
