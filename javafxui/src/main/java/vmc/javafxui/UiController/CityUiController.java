@@ -27,19 +27,14 @@ public class CityUiController {
 	
 	public void setMainApp(AppMainUiController mainApp) {
         this.main = mainApp;
+        CityListView.setItems( main.getCityList());
     }
 	
 	@FXML
 	public void initialize() {
 		// Rend les villes de la liste sélectionnables
 		CityListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-	}
-	
-	public void refresh() {
-		CityListView.getItems().clear();
-		CityListView.getItems().addAll(main.getCityList());
 		
-		// Met à jour les cellules pour n'afficher que le nom des villes
 		CityListView.setCellFactory(CityListView -> new ListCell<CityBean>() {
 			@Override
 			public void updateItem(CityBean city, boolean empty) {
@@ -52,6 +47,15 @@ public class CityUiController {
 				}
 			}
 		});
+		
+	}
+	
+	public void refresh() {
+		//CityListView.getItems().clear();
+		//CityListView.getItems().addAll(main.getCityList());
+		
+		// Met à jour les cellules pour n'afficher que le nom des villes
+		
 		
 	}
 	

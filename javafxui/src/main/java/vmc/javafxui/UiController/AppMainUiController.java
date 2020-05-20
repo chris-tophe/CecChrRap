@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 
 import com.sun.javafx.collections.ArrayListenerHelper;
 
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -69,7 +70,7 @@ public class AppMainUiController implements Initializable {
 	private BuildingProxy buildings;
 
 	private List<BuildingCityBean> buildingCityList = new LinkedList<BuildingCityBean>();
-	private List<CityBean> cityList = new LinkedList<CityBean>();
+	private SimpleListProperty<CityBean> cityList = new SimpleListProperty<CityBean>(FXCollections.observableList(new LinkedList<CityBean>()));
 	private BuildingBean buildingDetails = new BuildingBean();
 
 	public AppMainUiController(@Value("classpath:/buildingCityUi.fxml") Resource buildingCityUi,
@@ -145,8 +146,8 @@ public class AppMainUiController implements Initializable {
     
 		cityViewPane.getChildren().add(listViewCity);
 		cityUiController.setMainApp(this);
-		this.cityList = cities.getCities();
-		cityUiController.refresh();
+		this.cityList.set(FXCollections.observableList(cities.getCities()));
+		//cityUiController.refresh();
 
 		buildingUserViewPane.getChildren().add(listViewBuildingUser);
 		buildingUserUiController.setMainApp(this);
@@ -180,7 +181,7 @@ public class AppMainUiController implements Initializable {
 	}
 
 	// Retourne la liste des villes
-	public List<CityBean> getCityList(){return cityList;}
+	public ObservableList<CityBean> getCityList(){return cityList;}
 	
 	// Retourne les détails d'un bâtiment
 	public BuildingBean getBuildingDetails(){return buildingDetails;}
@@ -256,8 +257,8 @@ public class AppMainUiController implements Initializable {
 	
 	public void createCity(CityBean city) {
 		cities.createCity(city);
-		cityList = cities.getCities();
-		cityUiController.refresh();
+		cityList.set(FXCollections.observableList(cities.getCities()));
+		//cityUiController.refresh();
 	}
 	
 	public void refreshAfterSaveBuilding(CityBean selectedCity, int selectedBuildingId, UserBean user) {

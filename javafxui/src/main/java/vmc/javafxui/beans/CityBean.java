@@ -1,46 +1,60 @@
 package vmc.javafxui.beans;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
 
-
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class CityBean {
 	
-	private int idCity;
+	private SimpleIntegerProperty idCity;
 	
-	private String name;
+	private SimpleStringProperty name;
 	
-	private List<BuildingCityBean> buildings;
+	private SimpleListProperty<BuildingCityBean> buildings;
 	
 	public CityBean(){
-		this.buildings = new LinkedList<BuildingCityBean>();
+		this(0,"", new ArrayList<BuildingCityBean>());
+		
 	}
 	
 	public CityBean(int idCity, String name , List<BuildingCityBean> buildings) {
-		this.idCity = idCity;
-		this.name = name;
-		this.buildings = buildings;
+		this.idCity = new SimpleIntegerProperty( idCity);
+		this.name = new SimpleStringProperty(name);
+		this.buildings = new SimpleListProperty<BuildingCityBean>(FXCollections.observableList(buildings));
 	}
-
 
 	public int getIdCity() {
-		return idCity;
+		return idCity.get();
 	}
 	public void setIdCity(int idCity) {
-		this.idCity = idCity;
+		this.idCity.set(idCity);
 	}
+	public final  SimpleIntegerProperty idCityProperty() {
+		return idCity;
+	}
+	
 	public String getName() {
-		return name;
+		return name.get();
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);
 	}
+	public final SimpleStringProperty nameProperty() {
+		return name;
+	}
+	
 	public List<BuildingCityBean> getBuildings() {
-		return buildings;
+		return buildings.get();
 	}
 	public void setBuildings(List<BuildingCityBean> buildings) {
-		this.buildings = buildings;
+		this.buildings.set(FXCollections.observableList(buildings));
 	}
 	
 	public void addBuilding (BuildingCityBean building) {
@@ -49,6 +63,9 @@ public class CityBean {
 	
 	public void removeBuilding (BuildingCityBean building) {
 		this.buildings.remove(building);
+	}
+	public final SimpleListProperty<BuildingCityBean> buildingsProperty(){
+		return buildings;
 	}
 	
 	@Override
