@@ -19,17 +19,19 @@ public class CityBean {
 	
 	private SimpleListProperty<BuildingCityBean> buildings;
 	
+	
 	public CityBean(){
 		this(0,"", new ArrayList<BuildingCityBean>());
 		
 	}
 	
 	public CityBean(int idCity, String name , List<BuildingCityBean> buildings) {
-		this.idCity = new SimpleIntegerProperty( idCity);
+		this.idCity = new SimpleIntegerProperty(idCity);
 		this.name = new SimpleStringProperty(name);
 		this.buildings = new SimpleListProperty<BuildingCityBean>(FXCollections.observableList(buildings));
 	}
 
+	
 	public int getIdCity() {
 		return idCity.get();
 	}
@@ -39,6 +41,7 @@ public class CityBean {
 	public final  SimpleIntegerProperty idCityProperty() {
 		return idCity;
 	}
+	
 	
 	public String getName() {
 		return name.get();
@@ -50,23 +53,23 @@ public class CityBean {
 		return name;
 	}
 	
+	
 	public List<BuildingCityBean> getBuildings() {
 		return buildings.get();
 	}
 	public void setBuildings(List<BuildingCityBean> buildings) {
 		this.buildings.set(FXCollections.observableList(buildings));
 	}
-	
 	public void addBuilding (BuildingCityBean building) {
 		this.buildings.add(building);
 	}
-	
 	public void removeBuilding (BuildingCityBean building) {
 		this.buildings.remove(building);
 	}
 	public final SimpleListProperty<BuildingCityBean> buildingsProperty(){
 		return buildings;
 	}
+	
 	
 	@Override
 	public String toString() {
