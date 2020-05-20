@@ -134,3 +134,7 @@ nb-configuration.xml
 /building/src/main/resources/db.trace.db
 /user/src/main/resources/db.trace.db
 /user/src/main/resources/db.trace.db
+*.db
+building/src/main/resources/db.mv.db
+city/src/main/resources/db.mv.db
+user/src/main/resources/db.mv.db
