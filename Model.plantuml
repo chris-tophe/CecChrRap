@@ -1,3 +1,75 @@
+@startuml Model4
+skinparam classAttributeIconSize 0
+
+User o-- BuildingUser
+City o-- BuildingCity
+Building *-- Category
+Ui <..> User
+Ui <..> City
+Ui <..> Building
+
+class User{
+    - int idUser
+    - String email
+    - String passWord
+    - int role
+    - List<BuildingUSer> Buildings
+
+    + void addBuilding(Building building);
+    + void removeBuilding(Building building);
+}
+
+class BuildingUser{
+    - int idBuildingUser
+    - String name
+    - String photoUrl
+}
+
+class City{
+    - int idCity
+    - String name
+    - List<BuildingCity> Buildings
+
+    + void addBuildingLight(Building building);
+    + void removeBuildingLight(Building building);
+}
+
+class BuildingCity{
+    - int idBuildingCity
+    - String name
+    - String photoUrl
+
+}
+
+class Building{
+    - int idBuilding
+    - String name
+    - String streetNumber
+    - String streetName
+    - String zipCode
+    - String city
+    - String latitude
+    - String longitude
+    - List<String> photos
+    - String description
+    - Category category
+    - int constructionYear
+    - String architect
+
+}
+
+enum Category{
+    null
+    Castle
+    House
+    Building
+    Ruin
+}
+
+@enduml
+
+
+
 @startuml Model3
 skinparam classAttributeIconSize 0
 
